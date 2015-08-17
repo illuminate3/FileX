@@ -1,0 +1,13 @@
+{
+	"name": "rakko/origami",
+	"description": "Theme Manager for Rakko",
+	"keywords": ["Theme", "CMS", "Rakko"],
+	"require": {
+		"laravel/framework": "5.1.*"
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}

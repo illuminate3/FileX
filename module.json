@@ -1,0 +1,8 @@
+{
+	"name": "Origami",
+	"slug": "origami",
+	"version": "1.0",
+	"description": "Theme Manager",
+	"order": 5,
+	"enabled": true
+}
