@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Modules\NewsDesk\Http\Repositories;
+namespace App\Modules\Records\Http\Repositories;
 
-use App\Modules\NewsDesk\Http\Models\NewsStatus;
+use App\Modules\Records\Http\Models\NewsStatus;
 
 use DB;
 use Session;

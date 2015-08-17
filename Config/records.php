@@ -2,17 +2,17 @@
 
 return [
 
-//vendor:publish --provider="App\Modules\NewsDesk\Providers\NewsDeskServiceProvider" --tag="config"
-//vendor:publish --provider="App\Modules\NewsDesk\Providers\NewsDeskServiceProvider" --tag="js"
-//vendor:publish --provider="App\Modules\NewsDesk\Providers\NewsDeskServiceProvider" --tag="plugins"
-//vendor:publish --provider="App\Modules\NewsDesk\Providers\NewsDeskServiceProvider" --tag="views"
+//vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="config"
+//vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="js"
+//vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="plugins"
+//vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="views"
 
 /*
 |--------------------------------------------------------------------------
 | db settings
 |--------------------------------------------------------------------------
 */
-'newsdesk_db' => array(
+'Records_db' => array(
 	'prefix'					=> '',
 ),
 

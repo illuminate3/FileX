@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Modules\NewsDesk\Http\Repositories;
+namespace App\Modules\Records\Http\Repositories;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Modules\NewsDesk\Http\Repositories\BaseRepository as BaseRepository;
+use App\Modules\Records\Http\Repositories\BaseRepository as BaseRepository;
 
 use App\Modules\Core\Http\Repositories\LocaleRepository;
 
 use App\Modules\Core\Http\Models\Locale;
-use App\Modules\NewsDesk\Http\Models\News;
-use App\Modules\NewsDesk\Http\Models\NewsTranslation;
+use App\Modules\Records\Http\Models\News;
+use App\Modules\Records\Http\Models\NewsTranslation;
 
 use App;
 use Auth;

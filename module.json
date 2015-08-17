@@ -1,8 +1,8 @@
 {
-	"name": "Origami",
-	"slug": "origami",
+	"name": "Records",
+	"slug": "records",
 	"version": "1.0",
-	"description": "Theme Manager",
+	"description": "Records Manager",
 	"order": 5,
 	"enabled": true
 }

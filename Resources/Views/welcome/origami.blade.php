@@ -25,11 +25,11 @@
 			</a>
 			<div class="title">
 				<a href="/">
-					Origami
+					Records
 				</a>
 			</div>
 			<div class="quote">
-				Origami is a Rakko module that provides the ability to manage themes
+				Records is a Rakko module that provides the ability to manage documents, files and images
 			</div>
 		</div>
 	</div>

@@ -1,4 +1,4 @@
-# Origami (Theme Manager) : Laravel 5.1.x
+# Records (Theme Manager) : Laravel 5.1.x
 
 
 ## Status / Version
@@ -7,7 +7,7 @@ Beta Development
 
 
 ## Description
-Origami extends the ability of the Rakko platform's by providing it with a module manager.
+Records extends the ability of the Rakko platform's by providing it with a document, file, image manager.
 
 
 ## Functionality
@@ -27,8 +27,8 @@ Manage Themes
 ### migration commands
 
 ```
-php artisan module:migrate Origmami
-php artisan module:seed Origmami
+php artisan module:migrate Records
+php artisan module:seed Records
 ```
 
 
@@ -36,14 +36,14 @@ php artisan module:seed Origmami
 
 General Publish "ALL" method
 ```
-php artisan vendor:publish --provider="App\Modules\Origami\Providers\OrigamiServiceProvider"
+php artisan vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider"
 ```
 
 Specific Publish tags
 ```
-php artisan vendor:publish --provider="App\Modules\Origami\Providers\OrigamiServiceProvider" --tag="configs"
-php artisan vendor:publish --provider="App\Modules\Origami\Providers\OrigamiServiceProvider" --tag="images"
-php artisan vendor:publish --provider="App\Modules\Origami\Providers\OrigamiServiceProvider" --tag="views"
+php artisan vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="configs"
+php artisan vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="images"
+php artisan vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="views"
 ```
 
 

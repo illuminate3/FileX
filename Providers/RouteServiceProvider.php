@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\NewsDesk\Providers;
+namespace App\Modules\Records\Providers;
 
 use Caffeinated\Modules\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
@@ -16,7 +16,7 @@ class RouteServiceProvider extends ServiceProvider
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'App\Modules\NewsDesk\Http\Controllers';
+	protected $namespace = 'App\Modules\Records\Http\Controllers';
 
 	/**
 	 * Define your module's route model bindings, pattern filters, etc.
@@ -42,7 +42,7 @@ class RouteServiceProvider extends ServiceProvider
 	{
 		$router->group(['namespace' => $this->namespace], function($router)
 		{
-			require (config('modules.path').'/NewsDesk/Http/routes.php');
+			require (config('modules.path').'/Records/Http/routes.php');
 		});
 	}
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\NewsDesk\Providers;
+namespace App\Modules\Records\Providers;
 
 //use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
@@ -13,11 +13,11 @@ use Theme;
 use View;
 
 
-class NewsDeskServiceProvider extends ServiceProvider
+class RecordsServiceProvider extends ServiceProvider
 {
 
 	/**
-	 * Register the NewsDesk module service provider.
+	 * Register the Records module service provider.
 	 *
 	 * @return void
 	 */
@@ -34,13 +34,13 @@ class NewsDeskServiceProvider extends ServiceProvider
 
 
 	/**
-	 * Register the NewsDesk module resource namespaces.
+	 * Register the Records module resource namespaces.
 	 *
 	 * @return void
 	 */
 	protected function registerNamespaces()
 	{
-		View::addNamespace('newsdesk', __DIR__.'/../Resources/Views/');
+		View::addNamespace('Records', __DIR__.'/../Resources/Views/');
 	}
 
 
@@ -52,14 +52,14 @@ class NewsDeskServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/../Config/newsdesk.php' => config_path('newsdesk.php'),
+			__DIR__.'/../Config/Records.php' => config_path('Records.php'),
 			__DIR__ . '/../Resources/Assets/Images' => base_path('public/assets/images/'),
-			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/newsdesk/',
+			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/Records/',
 			__DIR__ . '/../Resources/Assets/Views/Widgets' => public_path('themes/') . Theme::getActive() . '/views/widgets/',
 		]);
 
 		$this->publishes([
-			__DIR__.'/../Config/newsdesk.php' => config_path('newsdesk.php'),
+			__DIR__.'/../Config/Records.php' => config_path('Records.php'),
 		], 'configs');
 
 		$this->publishes([
@@ -67,7 +67,7 @@ class NewsDeskServiceProvider extends ServiceProvider
 		], 'images');
 
 		$this->publishes([
-			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/newsdesk/',
+			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/Records/',
 			__DIR__ . '/../Resources/Assets/Views/Widgets' => public_path('themes/') . Theme::getActive() . '/views/widgets/',
 		], 'views');
 
@@ -90,8 +90,8 @@ class NewsDeskServiceProvider extends ServiceProvider
 	{
 		$app = $this->app;
 
-		$app->register('App\Modules\NewsDesk\Providers\RouteServiceProvider');
-		$app->register('App\Modules\NewsDesk\Providers\NewsMacroServiceProvider');
+		$app->register('App\Modules\Records\Providers\RouteServiceProvider');
+		$app->register('App\Modules\Records\Providers\NewsMacroServiceProvider');
 		$app->register('App\Modules\Menus\Providers\WidgetServiceProvider');
 		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
 		$app->register('Baum\Providers\BaumServiceProvider');

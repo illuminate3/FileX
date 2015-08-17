@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Modules\NewsDesk\Http\Presenters;
+namespace App\Modules\Records\Http\Presenters;
 
 use Laracasts\Presenter\Presenter;
 
 use DB;
 
 
-class NewsDesk extends Presenter {
+class Records extends Presenter {
 
 	/**
 	 * Present name

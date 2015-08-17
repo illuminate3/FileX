@@ -6,14 +6,14 @@
 |--------------------------------------------------------------------------
 */
 
-Route::pattern('news', '[0-9a-z]+');
+// Route::pattern('news', '[0-9a-z]+');
 
 // Resources
 // Controllers
 
-Route::group(['prefix' => 'newsdesk'], function() {
+Route::group(['prefix' => 'records'], function() {
 	Route::get('welcome', [
-		'uses'=>'NewsDeskController@welcome'
+		'uses'=>'RecordsController@welcome'
 	]);
 });
 
@@ -21,9 +21,9 @@ Route::group(['prefix' => 'newsdesk'], function() {
 
 // Route::group(array('before' => 'auth'), function()
 // {
-	\Route::get('elfinder', 'Barryvdh\Elfinder\ElfinderController@showIndex');
-	\Route::any('elfinder/connector', 'Barryvdh\Elfinder\ElfinderController@showConnector');
-	\Route::get('elfinder/ckeditor4', 'Barryvdh\Elfinder\ElfinderController@showCKeditor4');
+// 	\Route::get('elfinder', 'Barryvdh\Elfinder\ElfinderController@showIndex');
+// 	\Route::any('elfinder/connector', 'Barryvdh\Elfinder\ElfinderController@showConnector');
+// 	\Route::get('elfinder/ckeditor4', 'Barryvdh\Elfinder\ElfinderController@showCKeditor4');
 // });
 
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'newsdesk'], function() {
 // Route::resource('news', 'ArticlesController', array('except' => array('show')));
 //
 // Route::get('{slug}', array('as' => 'news', 'uses' => 'ArticleController@show'))
-// 	->where('slug', App\Modules\NewsDesk\Http\Models\Article::$slugPattern);
+// 	->where('slug', App\Modules\Records\Http\Models\Article::$slugPattern);
 
 // Controllers
 
@@ -53,8 +53,8 @@ Route::group(['prefix' => 'newsdesk'], function() {
 Route::group(['prefix' => 'admin'], function() {
 
 // Controllers
-	Route::resource('news', 'NewsController');
-	Route::resource('news_statuses', 'NewsStatusesController');
+// 	Route::resource('news', 'NewsController');
+// 	Route::resource('news_statuses', 'NewsStatusesController');
 
 // Routes
 // 	Route::delete('news/{id}', array(
@@ -80,7 +80,7 @@ Route::get('blog/{any}', 'FrontendController@get_post')->where('any', '.*');
 Route::get('{page}', 'FrontendController@get_page')->where('page', '.*');
 */
 
-Route::get('/news/{news}', 'FrontDeskController@get_article')->where('news', '.*');
+// Route::get('/news/{news}', 'FrontDeskController@get_article')->where('news', '.*');
 
 
 
@@ -113,7 +113,7 @@ Route::group(array('prefix' => 'news'), function () {
 // The slug route should be registered last since it will capture any slug-like
 // route
 Route::get('{slug}', array('as' => 'news', 'uses' => 'ArticleController@show'))
-	->where('slug', App\Modules\NewsDesk\Http\Models\Article::$slugPattern);
+	->where('slug', App\Modules\Records\Http\Models\Article::$slugPattern);
 */
 
 /*

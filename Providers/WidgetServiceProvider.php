@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\NewsDesk\Providers;
+namespace App\Modules\Records\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
