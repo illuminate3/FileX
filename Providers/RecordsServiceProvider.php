@@ -91,11 +91,11 @@ class RecordsServiceProvider extends ServiceProvider
 		$app = $this->app;
 
 		$app->register('App\Modules\Records\Providers\RouteServiceProvider');
-		$app->register('App\Modules\Records\Providers\NewsMacroServiceProvider');
+// 		$app->register('App\Modules\Records\Providers\NewsMacroServiceProvider');
 		$app->register('App\Modules\Menus\Providers\WidgetServiceProvider');
 		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
-		$app->register('Baum\Providers\BaumServiceProvider');
-		$app->register('Barryvdh\Elfinder\ElfinderServiceProvider');
+// 		$app->register('Baum\Providers\BaumServiceProvider');
+// 		$app->register('Barryvdh\Elfinder\ElfinderServiceProvider');
 	}
 
 }

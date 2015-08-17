@@ -31,7 +31,7 @@ class RecordsController extends Controller
 	 */
 	public function welcome()
 	{
-		return Theme::View('modules.Records.welcome.Records');
+		return Theme::View('modules.records.welcome.Records');
 	}
 
 
