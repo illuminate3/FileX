@@ -40,7 +40,7 @@ class RecordsServiceProvider extends ServiceProvider
 	 */
 	protected function registerNamespaces()
 	{
-		View::addNamespace('Records', __DIR__.'/../Resources/Views/');
+		View::addNamespace('records', __DIR__.'/../Resources/Views/');
 	}
 
 

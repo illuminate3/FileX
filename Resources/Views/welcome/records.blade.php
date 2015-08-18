@@ -14,14 +14,13 @@
 @section('inline-scripts')
 @stop
 
-
-{{-- Content --}}
+{{-- News --}}
 @section('content')
 
 	<div class="container">
 		<div class="content">
 			<a href="/">
-				<img src="/assets/images/origami.jpg" class="img-responsive">
+				<img src="/assets/images/himwari_2.png" class="img-responsive">
 			</a>
 			<div class="title">
 				<a href="/">
@@ -29,7 +28,7 @@
 				</a>
 			</div>
 			<div class="quote">
-				Records is a Rakko module that provides the ability to manage documents, files and images
+				Records is a document, file and image management system module for Rakko
 			</div>
 		</div>
 	</div>

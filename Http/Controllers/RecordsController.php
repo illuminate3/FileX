@@ -31,8 +31,18 @@ class RecordsController extends Controller
 	 */
 	public function welcome()
 	{
-		return Theme::View('modules.records.welcome.Records');
+		return Theme::View('modules.records.welcome.records');
 	}
 
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		return Theme::View('modules.core.landing');
+	}
 
 }

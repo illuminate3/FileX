@@ -12,12 +12,9 @@ return [
 | db settings
 |--------------------------------------------------------------------------
 */
-'Records_db' => array(
+'records_db' => array(
 	'prefix'					=> '',
 ),
-
-'top_news_count'				=> 5,
-
 
 
 ];

@@ -1,6 +1,24 @@
 <?php
 
-class documentsController extends \BaseController {
+namespace App\Modules\Core\Http\Controllers;
+
+use App\Modules\Core\Http\Models\Documents;
+use App\Modules\Core\Http\Repositories\DocumentRepository;
+
+use Illuminate\Http\Request;
+use App\Modules\Core\Http\Requests\DeleteRequest;
+use App\Modules\Core\Http\Requests\DocumentCreateRequest;
+use App\Modules\Core\Http\Requests\DocumentUpdateRequest;
+
+use Cache;
+use Flash;
+use Session;
+use Setting;
+use Theme;
+
+
+class DocumentsController extends RecordsController {
+
 
 	/**
 	 * Display a listing of the resource.
