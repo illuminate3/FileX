@@ -34,6 +34,7 @@
 </h1>
 </div>
 
+
 <div class="row">
 {!! Form::open([
 	'url' => 'admin/documents',
@@ -41,6 +42,7 @@
 	'class' => 'form',
 	'files' => true
 ]) !!}
+
 
 	<div class="form-group">
 		<label for="title">{{ Lang::choice('kotoba::files.document', 1) }}</label>

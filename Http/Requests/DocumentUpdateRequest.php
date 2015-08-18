@@ -28,7 +28,7 @@ class DocumentUpdateRequest extends FormRequest {
 	{
 		return [
 // 			'name'						=> 'required',
-// 			'description'				=> 'required'
+			'document'					=> 'required|mimes:txt,pdf,doc,docx,rtf,xls,ppt,odt,ods,xlsx'
 		];
 	}
 

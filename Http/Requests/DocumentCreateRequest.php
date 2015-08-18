@@ -19,6 +19,30 @@ class DocumentCreateRequest extends FormRequest {
 	}
 
 
+/*
+'supported_document_types' => array(
+// generic
+	'txt' => 'text/plain',
+// adobe
+	'pdf' => 'application/pdf',
+	'psd' => 'image/vnd.adobe.photoshop',
+	'ai' => 'application/postscript',
+	'eps' => 'application/postscript',
+	'ps' => 'application/postscript',
+// ms office
+	'doc' => 'application/msword',
+	'rtf' => 'application/rtf',
+	'xls' => 'application/vnd.ms-excel',
+	'ppt' => 'application/vnd.ms-powerpoint',
+// open office
+	'odt' => 'application/vnd.oasis.opendocument.text',
+	'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
+	'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+
+),
+*/
+
+
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
@@ -28,7 +52,7 @@ class DocumentCreateRequest extends FormRequest {
 	{
 		return [
 // 			'name'						=> 'required',
-// 			'description'				=> 'required'
+			'document'					=> 'required|mimes:txt,pdf,doc,docx,rtf,xls,ppt,odt,ods,xlsx'
 		];
 	}
 

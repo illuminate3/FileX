@@ -10,7 +10,8 @@ use App\Modules\Records\Http\Requests\DocumentCreateRequest;
 use App\Modules\Records\Http\Requests\DocumentUpdateRequest;
 use App\Modules\Records\Http\Requests\DeleteRequest;
 
-//use Datatables;
+
+use Config;
 use Flash;
 use Redirect;
 use Session;
@@ -91,7 +92,7 @@ class DocumentsController extends RecordsController {
 		$photo->url = $photo->photo->url();
 		return $photo;
 */
-//dd($request);
+//dd($request->document);
 
 		$document = Document::create($request->all());
 

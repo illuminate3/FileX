@@ -1,9 +1,9 @@
 @extends($theme_back)
 
 
-{{-- Web site Title --}}
+{{-- Web document Title --}}
 @section('title')
-{{ Lang::choice('kotoba::hr.grade', 2) }} :: @parent
+{{ Lang::choice('kotoba::files.document', 2) }} :: @parent
 @stop
 
 @section('styles')
@@ -13,6 +13,24 @@
 @stop
 
 @section('inline-scripts')
+(function(a){a.createModal=function(b){defaults={title:"",message:"Your Message Goes Here!",closeButton:true,scrollable:false};var b=a.extend({},defaults,b);var c=(b.scrollable===true)?'style="max-height: 420px;overflow-y: auto;"':"";html='<div class="modal fade" id="myModal">';html+='<div class="modal-dialog">';html+='<div class="modal-content">';html+='<div class="modal-header">';html+='<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>';if(b.title.length>0){html+='<h4 class="modal-title">'+b.title+"</h4>"}html+="</div>";html+='<div class="modal-body" '+c+">";html+=b.message;html+="</div>";html+='<div class="modal-footer">';if(b.closeButton===true){html+='<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>'}html+="</div>";html+="</div>";html+="</div>";html+="</div>";a("body").prepend(html);a("#myModal").modal().on("hidden.bs.modal",function(){a(this).remove()})}})(jQuery);
+
+/*
+* Here is how you use it
+*/
+$(function(){
+    $('.view-pdf').on('click',function(){
+        var pdf_link = $(this).attr('href');
+        var iframe = '<div class="iframe-container"><iframe src="'+pdf_link+'"></iframe></div>'
+        $.createModal({
+        title:'My Title',
+        message: iframe,
+        closeButton:true,
+        scrollable:false
+        });
+        return false;
+    });
+})
 @stop
 
 
@@ -23,7 +41,7 @@
 <div class="row">
 <h1>
 	<p class="pull-right">
-	<a href="/admin/grades" class="btn btn-default" title="{{ trans('kotoba::button.back') }}">
+	<a href="/admin/documents" class="btn btn-default" title="{{ trans('kotoba::button.back') }}">
 		<i class="fa fa-chevron-left fa-fw"></i>
 		{{ trans('kotoba::button.back') }}
 	</a>
@@ -36,45 +54,61 @@
 
 <div class="row">
 {!! Form::model(
-	$grade,
+	$document,
 	[
-		'route' => ['admin.grades.update', $grade->id],
+		'route' => ['admin.documents.update', $document->id],
 		'method' => 'PATCH',
-		'class' => 'form'
+		'class' => 'form',
+		'files' => 'true'
 	]
 ) !!}
 
-	<div class="tab-content">
 
-	@if (count($languages))
 
-	<ul class="nav nav-tabs">
-		@foreach( $languages as $language)
-			<li class="@if ($language->locale == $lang)active @endif">
-				<a href="#{{ $language->id }}" data-target="#lang_{{ $language->id }}" data-toggle="tab">{{{ $language->name }}}</a>
-			</li>
-		@endforeach
-	</ul>
-
-	@foreach( $languages as $language)
-	<div role="tabpanel" class="tab-pane padding fade @if ($language->locale == $lang)in active @endif" id="lang_{{{ $language->id }}}">
-
-			<div class="form-group">
-				<label for="title">{{ trans('kotoba::account.name') }}</label>
-				<input type="text" class="form-control" name="{{ 'name_'. $language->id }}" id="{{ 'name_'. $language->id }}" value="{{  $grade->translate($language->locale)->name }}">
-			</div>
-
-			<div class="form-group">
-				<label for="title">{{ trans('kotoba::general.description') }}</label>
-				<input type="text" class="form-control" name="{{ 'description_'. $language->id }}" id="{{ 'description_'. $language->id }}" value="{{  $grade->translate($language->locale)->description }}">
-			</div>
-
-	</div><!-- ./ $lang panel -->
-	@endforeach
-
-	@endif
-
+	<div class="form-group">
+		<label for="title">{{ Lang::choice('kotoba::files.document', 1) }}</label>
+		{{ $document->document_file_name }}
 	</div>
+
+
+{{ $document->document->url() }}
+<a href="{{ $document->document->url() }}">{{ $document->document->url() }}</a>
+
+<div class="container">
+	<div class="row">
+		<h2>PDF in modal preview using Easy Modal Plugin</h2>
+        <a class="btn btn-primary view-pdf" href="http://www.bodossaki.gr/userfiles/file/dummy.pdf">View PDF</a>
+	</div>
+</div>
+
+
+
+{{--
+<div class="form-group padding-bottom-xl">
+	<label for="inputLogo" class="col-sm-1 control-label">{{ trans('kotoba::account.logo') }}:</label>
+	<div class="col-sm-11">
+		<div class="row margin-bottom-lg">
+		<div class="col-sm-8">
+
+			@if($logo != NULL)
+				{!! Form::hidden('logo', $document->logo) !!}
+				{!! Html::image($logo, '', ['class' => 'img-thumbnail']) !!}
+			@else
+				<div class="alert alert-danger">
+					{{ trans('kotoba::account.error.logo') }}
+				</div>
+			@endif
+
+		</div>
+
+		<div class="col-sm-4">
+			{!! Form::file('newImage') !!}
+		</div>
+
+		</div>
+	</div>
+</div>
+--}}
 
 
 <hr>
@@ -86,7 +120,7 @@
 
 <div class="row">
 <div class="col-sm-4">
-	<a href="/admin/grades" class="btn btn-default btn-block" title="{{ trans('kotoba::button.cancel') }}">
+	<a href="/admin/documents" class="btn btn-default btn-block" title="{{ trans('kotoba::button.cancel') }}">
 		<i class="fa fa-times fa-fw"></i>
 		{{ trans('kotoba::button.cancel') }}
 	</a>
