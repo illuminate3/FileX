@@ -53,6 +53,44 @@ Route::group(['prefix' => 'records'], function() {
 Route::group(['prefix' => 'admin'], function() {
 
 // Controllers
+
+	Route::resource('documents', 'DocumentsController');
+
+
+    /**
+     * Documents
+    **/
+
+    Route::get('documents/index', 'documentsController@index');
+    Route::get('documents/add', 'documentsController@create');
+    /*Route::get('documents/add/{id}', 'documentsController@add');
+    Route::post('documents/add/{id}', function ($id) {
+        $fileUpload = new bz_customUpload();
+        $fileUpload->bz_fileUpload($id, Input::get('folder'), Input::get('name'));
+
+        return Redirect::to('upravljanje/'.$id);
+    });*/
+    Route::get('documents/edit/{id}', 'documentsController@edit');
+    Route::post('documents/edit/{id}', function ($id) {
+        $document = Documents::find($id);
+        $document->name = Input::get('name');
+        $document->save();
+        return Redirect::back()->with('message','Podatki so bili uspešno shranjeni.');
+    });
+    Route::post('documents/create', function() {
+        $name       = Input::get('name');
+        $group      = Input::get('selectedFolder');
+        $tempFolder = Input::get('tempFolder');
+        $folder     = Folders::where('id', $group)->pluck('path');
+
+        $fileUpload = new bz_customUpload();
+        $fileUpload->bz_fileUpload($group, $tempFolder, $folder, $name);
+
+        return Redirect::back()->with('message','Podatki so bili uspešno shranjeni.');
+    });
+
+
+
 // 	Route::resource('news', 'NewsController');
 // 	Route::resource('news_statuses', 'NewsStatusesController');
 

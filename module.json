@@ -3,6 +3,6 @@
 	"slug": "records",
 	"version": "1.0",
 	"description": "Records Manager",
-	"order": 5,
+	"order": 1,
 	"enabled": true
 }

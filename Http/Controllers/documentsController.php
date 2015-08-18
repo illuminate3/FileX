@@ -1,23 +1,41 @@
 <?php
 
-namespace App\Modules\Core\Http\Controllers;
+namespace App\Modules\Records\Http\Controllers;
 
-use App\Modules\Core\Http\Models\Documents;
-use App\Modules\Core\Http\Repositories\DocumentRepository;
+use App\Modules\Records\Http\Models\Document;
+use App\Modules\Records\Http\Repositories\DocumentRepository;
 
 use Illuminate\Http\Request;
-use App\Modules\Core\Http\Requests\DeleteRequest;
-use App\Modules\Core\Http\Requests\DocumentCreateRequest;
-use App\Modules\Core\Http\Requests\DocumentUpdateRequest;
+use App\Modules\Records\Http\Requests\DocumentCreateRequest;
+use App\Modules\Records\Http\Requests\DocumentUpdateRequest;
+use App\Modules\Records\Http\Requests\DeleteRequest;
 
-use Cache;
+//use Datatables;
 use Flash;
+use Redirect;
 use Session;
-use Setting;
 use Theme;
 
 
 class DocumentsController extends RecordsController {
+
+	/**
+	 * Document Repository
+	 *
+	 * @var Document
+	 */
+	protected $document;
+
+	public function __construct(
+			Document $document,
+			DocumentRepository $document_repo
+		)
+	{
+		$this->document = $document;
+		$this->document_repo = $document_repo;
+// middleware
+		$this->middleware('admin');
+	}
 
 
 	/**
@@ -27,12 +45,15 @@ class DocumentsController extends RecordsController {
 	 */
 	public function index()
 	{
-		return View::make('documents.index');
-	}
+		$lang = Session::get('locale');
+		$documents = $this->document->all();
+//dd($documents);
 
-	public function add($id)
-	{
-		return View::make('documents.add', compact('id'));
+		return Theme::View('modules.records.documents.index',
+			compact(
+				'lang',
+				'documents'
+				));
 	}
 
 
@@ -43,12 +64,13 @@ class DocumentsController extends RecordsController {
 	 */
 	public function create()
 	{
-		$id = Request::query('id');
-		if ($id!== FALSE) {
-			return View::make('documents.create', compact('id'));
-		} else {
-			return View::make('documents.create');
-		}
+		$lang = Session::get('locale');
+//dd($lang);
+
+		return Theme::View('modules.records.documents.create',
+			compact(
+				'lang'
+		));
 	}
 
 
@@ -57,9 +79,14 @@ class DocumentsController extends RecordsController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(
+		DocumentCreateRequest $request
+		)
 	{
-		//
+		$this->document_repo->store($request->all());
+
+		Flash::success( trans('kotoba::hr.success.document_create') );
+		return redirect('admin/documents');
 	}
 
 
@@ -71,7 +98,9 @@ class DocumentsController extends RecordsController {
 	 */
 	public function show($id)
 	{
-		//
+// 		$document = $this->document_repo->findOrFail($id);
+//
+// 		return View::make('HR::documents.show', compact('document'));
 	}
 
 
@@ -83,7 +112,26 @@ class DocumentsController extends RecordsController {
 	 */
 	public function edit($id)
 	{
-		return View::make('documents.edit', compact('id'));
+		$document = $this->document->find($id);
+		$lang = Session::get('locale');
+//dd($lang);
+
+		$modal_title = trans('kotoba::general.command.delete');
+		$modal_body = trans('kotoba::general.ask.delete');
+		$modal_route = 'admin.documents.destroy';
+		$modal_id = $id;
+		$model = '$document';
+
+		return Theme::View('modules.records.documents.edit',
+			compact(
+				'document',
+				'lang',
+				'modal_title',
+				'modal_body',
+				'modal_route',
+				'modal_id',
+				'model'
+		));
 	}
 
 
@@ -93,9 +141,16 @@ class DocumentsController extends RecordsController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(
+		DocumentUpdateRequest $request,
+		$id
+		)
 	{
-		//
+//dd("update");
+		$this->document_repo->update($request->all(), $id);
+
+		Flash::success( trans('kotoba::hr.success.document_update') );
+		return redirect('admin/documents');
 	}
 
 
@@ -107,8 +162,40 @@ class DocumentsController extends RecordsController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->document->find($id)->delete();
+
+		Flash::success( trans('kotoba::hr.success.document_delete') );
+		return Redirect::route('admin.documents.index');
 	}
 
+
+	/**
+	* Datatables data
+	*
+	* @return Datatables JSON
+	*/
+	public function data()
+	{
+//		$query = Document::select(array('documents.id','documents.name','documents.description'))
+//			->orderBy('documents.name', 'ASC');
+//		$query = Document::select('id', 'name' 'description', 'updated_at');
+//			->orderBy('name', 'ASC');
+		$query = Document::select('id', 'name', 'description', 'updated_at');
+//dd($query);
+
+		return Datatables::of($query)
+//			->remove_column('id')
+
+			->addColumn(
+				'actions',
+				'
+					<a href="{{ URL::to(\'admin/documents/\' . $id . \'/edit\' ) }}" class="btn btn-success btn-sm" >
+						<span class="glyphicon glyphicon-pencil"></span>  {{ trans("kotoba::button.edit") }}
+					</a>
+				'
+				)
+
+			->make(true);
+	}
 
 }

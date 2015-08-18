@@ -1,71 +1,80 @@
-@extends ('master')
-
-<?php
-    $documents = Documents::orderBy('group')->get();
-    $group = '';
-    $num = 1;
-?>
+@extends($theme_back)
 
 
+{{-- Web site Title --}}
+@section('title')
+{{ Lang::choice('kotoba::files.document', 2) }} :: @parent
+@stop
+
+@section('styles')
+	<link href="{{ asset('assets/vendors/DataTables-1.10.5/plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+@stop
+
+@section('scripts')
+	<script src="{{ asset('assets/vendors/DataTables-1.10.5/media/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('assets/vendors/DataTables-1.10.5/plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+@stop
+
+@section('inline-scripts')
+$(document).ready(function() {
+oTable =
+	$('#table').DataTable({
+	});
+});
+@stop
+
+
+{{-- Content --}}
 @section('content')
-    <div class="row documentsIndex">
-        @if (isset($message))
-            <div class="large-12 columns alert-box success" style="margin-top: 20px; margin-bottom: 0px;">
-                {{ $message; }}
-            </div>
-        @endif
 
-        <div class="large-12 columns">
-            <h3>Pregled dokumentov</h3>
-        </div>
 
-        <div class="right large-12 columns" style="text-align: right;"><a id="modalLink" data-bid="/documents/add" class="tiny button"><i class="fi-plus"></i>Nov dokument</a></div>
+<div class="row">
+<h1>
+	<p class="pull-right">
+	<a href="/admin/documents/create" class="btn btn-primary" title="{{ trans('kotoba::button.new') }}">
+		<i class="fa fa-plus fa-fw"></i>
+		{{ trans('kotoba::button.new') }}
+	</a>
+	</p>
+	<i class="fa fa-angle-double-right fa-lg"></i>
+		{{ Lang::choice('kotoba::cms.document', 2) }}
+	<hr>
+</h1>
+</div>
 
-            <div class="large-12 columns document-table">
-            <table>
-                <thead>
-                    <tr>
-                        <td></td>
-                        <td>Mapa</td>
-                        <td>Naziv</td>
-                        <td>Avtor</td>
-                        <td>Tip</td>
-                        <td>Objekt</td>
-                        <td>Status</td>
-                        <td>Dodan</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($documents as $document)
-                        <?php $timestamp = strtotime($document->created_at); $datetime = date("d. m. Y (H:i:s)", $timestamp); ?>
-                        @if ($document->group == $group)
-                            <tr>
-                                <td>{{ $num }}</td>
-                                <td></td>
-                                <td>{{ $document->name }}</td>
-                                <td>{{ User::find($document->owner)->name }} {{ User::find($document->owner)->lastName }}</td>
-                                <td>{{ $document->extension }}</td>
-                                <td>{{ Buildings::where('id',(Folders::where('id',$document->group)->pluck('group')))->pluck('name') }}</td>
-                                <td>{{ $document->visibility }}</td>
-                                <td>{{ $datetime }}</td>
-                            </tr>
-                        @else
-                            <?php $group = $document->group; ?>
-                            <tr>
-                                <td>{{ $num }}</td>
-                                <td>{{ Folders::where('id', $document->group)->pluck('name') }}</td>
-                                <td>{{ $document->name }}</td>
-                                <td>{{ User::find($document->owner)->name }} {{ User::find($document->owner)->lastName }}</td>
-                                <td>{{ $document->extension }}</td>
-                                <td>{{ Buildings::where('id',(Folders::where('id',$document->group)->pluck('group')))->pluck('name') }}</td>
-                                <td>{{ $document->visibility }}</td>
-                                <td>{{ $datetime }}</td>
-                            </tr>
-                        @endif
-                        <?php $num += 1; ?>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="row">
+<table id="table" class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>{{ Lang::choice('kotoba::table.document', 1) }}</th>
+			<th>{{ trans('kotoba::table.name') }}</th>
+			<th>{{ trans('kotoba::table.script') }}</th>
+			<th>{{ trans('kotoba::table.native') }}</th>
+			<th>{{ trans('kotoba::table.active') }}</th>
+			<th>{{ trans('kotoba::table.default') }}</th>
+
+			<th>{{ Lang::choice('kotoba::table.action', 2) }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach ($documents as $document)
+			<tr>
+				<td>{{ $document->document }}</td>
+				<td>{{ $document->name }}</td>
+				<td>{{ $document->script }}</td>
+				<td>{{ $document->native }}</td>
+				<td>{{ $document->present()->status($document->active) }}</td>
+				<td>{{ $document->present()->active($document->default) }}</td>
+				<td>
+					<a href="/admin/documents/{{ $document->id }}/edit" class="btn btn-success" title="{{ trans('kotoba::button.edit') }}">
+						<i class="fa fa-pencil fa-fw"></i>
+						{{ trans('kotoba::button.edit') }}
+					</a>
+				</td>
+			</tr>
+		@endforeach
+	</tbody>
+</table>
+</div>
+
 @stop

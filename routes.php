@@ -4,13 +4,6 @@
     Route::get('/', array('as' => 'home', 'uses' => 'pagesController@index'));
 
 
-    Route::get('login', array('as' => 'login', 'before' => 'guest', 'uses' => 'pagesController@showLogin'));
-    Route::post('login', 'userController@doLogin');
-
-    Route::get('logout', array('uses' => 'pagesController@logout'));
-
-
-
     //Admin pages
 
     //Route::get('admin/user_management', 'adminPagesController@userManagement');
@@ -336,37 +329,7 @@
         return Redirect::back()->with('message','Obvestilo je bilo uspešno shranjeno');
     });
 
-    /**
-     * Documents
-    **/
 
-    Route::get('documents/index', 'documentsController@index');
-    Route::get('documents/add', 'documentsController@create');
-    /*Route::get('documents/add/{id}', 'documentsController@add');
-    Route::post('documents/add/{id}', function ($id) {
-        $fileUpload = new bz_customUpload();
-        $fileUpload->bz_fileUpload($id, Input::get('folder'), Input::get('name'));
-
-        return Redirect::to('upravljanje/'.$id);
-    });*/
-    Route::get('documents/edit/{id}', 'documentsController@edit');
-    Route::post('documents/edit/{id}', function ($id) {
-        $document = Documents::find($id);
-        $document->name = Input::get('name');
-        $document->save();
-        return Redirect::back()->with('message','Podatki so bili uspešno shranjeni.');
-    });
-    Route::post('documents/create', function() {
-        $name       = Input::get('name');
-        $group      = Input::get('selectedFolder');
-        $tempFolder = Input::get('tempFolder');
-        $folder     = Folders::where('id', $group)->pluck('path');
-
-        $fileUpload = new bz_customUpload();
-        $fileUpload->bz_fileUpload($group, $tempFolder, $folder, $name);
-
-        return Redirect::back()->with('message','Podatki so bili uspešno shranjeni.');
-    });
 
     /**
      * Upravljanje objektov

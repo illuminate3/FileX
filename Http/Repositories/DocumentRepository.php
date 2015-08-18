@@ -2,36 +2,27 @@
 
 namespace App\Modules\Records\Http\Repositories;
 
-use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Model;
+use App\Modules\Core\Http\Repositories\BaseRepository;
+use App\Modules\Records\Http\Models\Document;
 
-use App\Modules\Records\Http\Repositories\BaseRepository as BaseRepository;
-
-use App\Modules\Core\Http\Repositories\LocaleRepository;
-
-use App\Modules\Core\Http\Models\Locale;
-use App\Modules\Records\Http\Models\News;
-use App\Modules\Records\Http\Models\NewsTranslation;
-
-use App;
-use Auth;
-use Cache;
 use Config;
 use DB;
+use Image;
+use Input;
 use Lang;
-use Route;
-use Session;
-use Illuminate\Support\Str;
+use Request;
 
 
-class NewsRepository extends BaseRepository {
+class DocumentRepository extends BaseRepository {
+
 
 	/**
 	 * The Module instance.
 	 *
 	 * @var App\Modules\ModuleManager\Http\Models\Module
 	 */
-	protected $news;
+	protected $document;
+
 
 	/**
 	 * Create a new ModuleRepository instance.
@@ -40,12 +31,10 @@ class NewsRepository extends BaseRepository {
 	 * @return void
 	 */
 	public function __construct(
-			LocaleRepository $locale_repo,
-			News $news
+		Document $document
 		)
 	{
-		$this->locale_repo = $locale_repo;
-		$this->model = $news;
+		$this->model = $document;
 	}
 
 
@@ -56,46 +45,7 @@ class NewsRepository extends BaseRepository {
 	 */
 	public function create()
 	{
-
-		$lang = Session::get('locale');
-		$locale_id = $this->locale_repo->getLocaleID($lang);
-//dd($locale_id);
-
-//		$articlelist = $this->getParents( $exceptId = $this->id, $locales );
-
-// 		$articlelist = $this->getParents($locale_id, null);
-// 		$articlelist = array('' => trans('kotoba::cms.no_parent')) + $articlelist;
-//dd($articlelist);
-		$all_articlelist = $this->getParents($locale_id, null);
-		$articlelist = array('' => trans('kotoba::cms.no_parent'));
-		$articlelist = new Collection($articlelist);
-		$articlelist = $articlelist->merge($all_articlelist);
-
-
-
-		$users = $this->getUsers();
-		$users = array('' => trans('kotoba::general.command.select_a') . '&nbsp;' . Lang::choice('kotoba::account.user', 1) ) + $users;
-//dd($users);
-//		$all_menus = $this->menu->all()->lists('name', 'id');
-// 		$all_users = $this->getUsers();
-// 		$users = array('' => trans('kotoba::general.command.select_a') . '&nbsp;' . Lang::choice('kotoba::account.user', 1));
-// 		$users = new Collection($users);
-// 		$users = $users->merge($all_users);
-
-
-		$news_statuses = $this->getNewsStatuses($locale_id);
-		$news_statuses = array('' => trans('kotoba::general.command.select_a') . '&nbsp;' . Lang::choice('kotoba::cms.news_status', 1) ) + $news_statuses;
-
-		$user_id = Auth::user()->id;
-
-		return compact(
-			'articlelist',
-			'news_statuses',
-			'users',
-			'user_id',
-			'lang',
-			'locale_id'
-			);
+		//
 	}
 
 
@@ -107,15 +57,27 @@ class NewsRepository extends BaseRepository {
 	 */
 	public function show($id)
 	{
-		$news = $this->model->find($id);
-		$links = News::find($id)->newslinks;
-//$news = $this->news->show($id);
+		$document = $this->model->find($id);
+//		$document = $this->model->with('employees')->find($id);
+//		$document = $this->model->with('users')->find($id);
+//dd($document);
 
-//$news = $this->model->where('id', $id)->first();
-//		$news = new Collection($news);
-//dd($news);
+		if ($document->logo != NULL) {
+			$logo = $document->logo;
+		} else {
+			$logo = null;
+		}
 
-		return compact('news', 'links');
+//dd($document->division_id);
+//		$division = $document->present()->divisionName($document->division_id);
+		$contact = $document->present()->contactName($document->user_id);
+
+		return compact(
+			'contact',
+//			'division',
+			'logo',
+			'document'
+		);
 	}
 
 
@@ -127,39 +89,10 @@ class NewsRepository extends BaseRepository {
 	 */
 	public function edit($id)
 	{
-		$news = $this->model->find($id);
-//dd($news);
-
-		$lang = Session::get('locale');
-		$locale_id = $this->locale_repo->getLocaleID($lang);
-//dd($locale_id);
-
-//		$articlelist = $this->getParents( $exceptId = $this->id, $locales );
-
-// 		$articlelist = $this->getParents($locale_id, $id);
-// 		$articlelist = array('' => trans('kotoba::cms.no_parent')) + $articlelist;
-//dd($articlelist);
-		$all_articlelist = $this->getParents($locale_id, null);
-		$articlelist = array('' => trans('kotoba::cms.no_parent'));
-		$articlelist = new Collection($articlelist);
-		$articlelist = $articlelist->merge($all_articlelist);
-
-		$users = $this->getUsers();
-		$users = array('' => trans('kotoba::general.command.select_a') . '&nbsp;' . Lang::choice('kotoba::account.user', 1) ) + $users;
-//dd($users);
-		$news_statuses = $this->getNewsStatuses($locale_id);
-		$news_statuses = array('' => trans('kotoba::general.command.select_a') . '&nbsp;' . Lang::choice('kotoba::cms.news_status', 1) ) + $news_statuses;
-
-//		$user_id = Auth::user()->id;
-
-		return compact(
-			'news',
-			'lang',
-//			'locales',
-			'articlelist',
-			'news_statuses',
-			'users'
-			);
+// 		$document = $this->model->find($id);
+// 		return compact(
+// 			'document'
+// 		);
 	}
 
 
@@ -168,95 +101,19 @@ class NewsRepository extends BaseRepository {
 	 *
 	 * @return Illuminate\Support\Collection
 	 */
-	public function store($input)
+	public function store($input, $file, $show_path)
 	{
 //dd($input);
 
-		if ( !isset($input['class']) ) {
-			$class = null;
-		} else {
-			$class = $input['class'];
+		$this->model = new Document;
+
+		if ($file != NULL) {
+			$input['logo'] = $show_path . $file;
 		}
+			$input['division_id'] = null;
+			$input['logo'] = null;
 
-		if ( !isset($input['is_banner']) ) {
-			$is_banner = 0;
-		} else {
-			$is_banner = $input['is_banner'];
-		}
-
-		if ( !isset($input['is_featured']) ) {
-			$is_featured = 0;
-		} else {
-			$is_featured = $input['is_featured'];
-		}
-
-		if ( !isset($input['is_timed']) ) {
-			$is_timed = 0;
-		} else {
-			$is_timed = $input['is_timed'];
-		}
-
-		if ( $input['publish_end'] == '' ) {
-			$publish_end = null;
-		} else {
-			$publish_end = $input['publish_end'];
-		}
-
-		if ( $input['publish_start'] == '' ) {
-			$publish_start = null;
-		} else {
-			$publish_start = $input['publish_start'];
-		}
-
-		if ( ($input['news_status_id'] == 3 || $input['news_status_id'] == 4) ) {
-			$is_published = 1;
-		}
-
-		$lang = Session::get('locale');
-		$app_locale_id = $this->locale_repo->getLocaleID($lang);
-//dd($locale_id);
-//		$app_locale_id = $this->getLocaleID(Config::get('app.locale'));
-
-		$values = [
-			'class'						=> $class,
-			'is_banner'					=> $is_banner,
-			'is_featured'				=> $is_featured,
-			'is_timed'					=> $is_timed,
-			'publish_end'				=> $publish_end,
-			'publish_start'				=> $publish_start,
-			'order'						=> $input['order'],
-			'news_status_id'			=> $input['news_status_id'],
-			'slug'						=> Str::slug($input['title_'.$app_locale_id]),
-			'user_id'					=>  $input['user_id']
-		];
-//dd($values);
-
-		$news = News::create($values);
-
-		$locales = Cache::get('languages');
-		$original_locale = Session::get('locale');
-
-		foreach($locales as $locale => $properties)
-		{
-
-			App::setLocale($properties->locale);
-
-			$values = [
-				'content'				=> $input['content_'.$properties->id],
-				'summary'				=> $input['summary_'.$properties->id],
-				'title'					=> $input['title_'.$properties->id],
-				'meta_title'			=> $input['meta_title_'.$properties->id],
-				'meta_keywords'			=> $input['meta_keywords_'.$properties->id],
-				'meta_description'		=> $input['meta_description_'.$properties->id]
-			];
-
-			$news->update($values);
-		}
-
-		$this->manageBaum($input['parent_id'], null);
-
-		App::setLocale($original_locale, Config::get('app.fallback_locale'));
-		return;
+		$this->model->create($input);
 	}
 
 
@@ -267,282 +124,64 @@ class NewsRepository extends BaseRepository {
 	 * @param  int    $id
 	 * @return void
 	 */
-	public function update($input, $id)
+	public function update($input, $id, $file, $show_path)
 	{
-//dd($input);
+//dd($file);
+		$document = Document::find($id);
 
-		if ( !isset($input['class']) ) {
-			$class = null;
-		} else {
-			$class = $input['class'];
+		if ($file != NULL) {
+			$input['logo'] = $show_path . $file;
 		}
+			$input['division_id'] = null;
+			$input['logo'] = null;
 
-		if ( !isset($input['is_banner']) ) {
-			$is_banner = 0;
-		} else {
-			$is_banner = $input['is_banner'];
-		}
-
-		if ( !isset($input['is_featured']) ) {
-			$is_featured = 0;
-		} else {
-			$is_featured = $input['is_featured'];
-		}
-
-		if ( !isset($input['is_timed']) ) {
-			$is_timed = 0;
-		} else {
-			$is_timed = $input['is_timed'];
-		}
-
-		if ( $input['publish_end'] == '' ) {
-			$publish_end = null;
-		} else {
-			$publish_end = $input['publish_end'];
-		}
-
-		if ( $input['publish_start'] == '' ) {
-			$publish_start = null;
-		} else {
-			$publish_start = $input['publish_start'];
-		}
-
-		if ( ($input['news_status_id'] == 3 || $input['news_status_id'] == 4) ) {
-			$is_published = 1;
-		}
-
-		$news = News::find($id);
-
-		$lang = Session::get('locale');
-		$app_locale_id = $this->locale_repo->getLocaleID($lang);
-//dd($locale_id);
-
-		$values = [
-			'class'						=> $class,
-			'is_banner'					=> $is_banner,
-			'is_featured'				=> $is_featured,
-			'is_timed'					=> $is_timed,
-			'publish_end'				=> $publish_end,
-			'publish_start'				=> $publish_start,
-			'order'						=> $input['order'],
-			'news_status_id'			=> $input['news_status_id'],
-			'slug'						=> Str::slug($input['title_'.$app_locale_id]),
-			'user_id'					=>  $input['user_id']
-		];
-
-		$news->update($values);
-
-//		$locales = Cache::get('languages');
-		$locales = Cache::get('languages');
-		$original_locale = Session::get('locale');
-
-		foreach($locales as $locale => $properties)
-		{
-
-			App::setLocale($properties->locale);
-
-			$values = [
-				'content'				=> $input['content_'.$properties->id],
-				'summary'				=> $input['summary_'.$properties->id],
-				'title'					=> $input['title_'.$properties->id],
-				'meta_title'			=> $input['meta_title_'.$properties->id],
-				'meta_keywords'			=> $input['meta_keywords_'.$properties->id],
-				'meta_description'		=> $input['meta_description_'.$properties->id]
-			];
-
-			$news->update($values);
-
-		}
-
-		$this->manageBaum($input['parent_id'], $id);
-
-		App::setLocale($original_locale, Config::get('app.fallback_locale'));
-		return;
+		$document->update($input);
 	}
 
 
-// Functions ----------------------------------------------------------------------------------------------------
+// Functions --------------------------------------------------
 
-
-	public function getUsers()
+	public function getDocuments()
 	{
-		$users = DB::table('users')->lists('email', 'id');
-		return $users;
+		$documents = DB::table('documents')->lists('name', 'id');
+		return $documents;
 	}
 
-
-	public function getNewsStatuses($locale_id)
+	public function getDocument($barcode)
 	{
-		$news_statuses = DB::table('news_status_translations')
-			->where('locale_id', '=', $locale_id)
-			->orderBy('id')
-			->lists('name', 'id');
-
-		return $news_statuses;
-	}
-
-
-	public function getNewsID($name)
-	{
-
-		$id = DB::table('news')
-			->where('name', '=', $name)
-			->pluck('id');
-
-		return $id;
-	}
-
-//	public function getParents($exceptId, $locale)
-	public function getParents($locale_id, $id)
-	{
-		if ($id != null ) {
-			$query = News::select('news_translations.title AS title', 'news.id AS id')
-				->join('news_translations', 'news.id', '=', 'news_translations.news_id')
-				->where('news_translations.locale_id', '=', $locale_id)
-				->where('news.id', '!=', $id, 'AND')
-				->get();
-		} else {
-			$query = News::select('news_translations.title AS title', 'news.id AS id')
-			->join('news_translations', 'news.id', '=', 'news_translations.news_id')
-			->where('news_translations.locale_id', '=', $locale_id)
+		$document = DB::table('documents')
+			->where('barcode', '=', $barcode)
 			->get();
-		}
 
-		$parents = $query->lists('title', 'id');
-//dd($parents);
-
-		return $parents;
+		return $document;
 	}
 
-	public function manageBaum($parent_id, $id)
+	public function getContacts()
 	{
-//dd($parent_id);
-
-		if ($parent_id != 0 && $id != null) {
-			$node = News::find($id);
-			$node->makeChildOf($parent_id);
-		}
-
-		if ($parent_id == 0 && $id != null) {
-			$node = News::find($id);
-			$node->makeRoot();
-		}
-
+		$contacts = DB::table('users')->lists('name', 'id');
+//		$contacts = DB::table('profiles')->lists('email', 'user_id');
+//		$contacts = DB::table('profiles')->lists('first_name' . '&nbsp;' . 'last_name', 'user_id');
+// 		if ( empty($contacts) ) {
+// 			$contacts = DB::table('users')->lists('email', 'id');
+// 		}
+		return $contacts;
 	}
 
-	public function getArticleID($slug)
-	{
-//dd($slug);
-/*
-		$article_ID = DB::table('news_translations')
-			->where('news_translations.slug', '=', $slug)
-			->pluck('news_id');
-*/
-		$article_ID = DB::table('news')
-			->where('slug', '=', $slug)
-			->pluck('id');
-//dd($article_ID);
-
-		return $article_ID;
-	}
-
-	public function getNews($article_ID)
-	{
-//dd($article_ID);
- 		$news = News::find($article_ID);
-/*
-		$article = DB::table('news')
-			->join('news_translations', 'news.id', '=', 'news_translations.news_id')
-			->where('news_translations.locale_id', '=', $locale_id)
-//			->where('news.is_current', '=', 1, 'AND')
-			->where('news.is_online', '=', 1, 'AND')
-			->where('news.is_deleted', '=', 0, 'AND')
-			->where('news_translations.slug', '=', $slug, 'AND')
-			->pluck('news.id');
-*/
-//dd($news);
-
-		return $news;
-	}
-
-	public function getArticle($locale_id, $slug)
-	{
-//dd($slug);
-		$article = DB::table('news')
-			->join('news_translations', 'news.id', '=', 'news_translations.news_id')
-			->where('news_translations.locale_id', '=', $locale_id)
-//			->where('news.is_current', '=', 1, 'AND')
-			->where('news.is_online', '=', 1, 'AND')
-			->where('news.is_deleted', '=', 0, 'AND')
-//			->where('news_translations.slug', '=', $slug, 'AND')
-			->where('news.slug', '=', $slug, 'AND')
-			->pluck('news.id');
-//dd($article);
-
- 		$news = News::find($article);
-dd($news);
+// 	public function getDivisions()
+// 	{
+// 		$divisions = DB::table('divisions')->lists('name', 'id');
+// 		return $divisions;
+// 	}
 
 /*
-	   $article =  static::whereIsCurrent(1)
-					   ->whereIsOnline(1)
-					   ->whereIsDeleted(0)
-					   ->whereSlug($slug)
-					   ->first();
-*/
-		return $article;
-	}
-
-
-	public function getRoots($locale_id)
+	public function getContactUser($id)
 	{
-		// $roots = Cache::rememberForever('roots', function()
-		// {
-		$article = DB::table('news')
-			->join('news_translations', 'news.id', '=', 'news_translations.news_id')
-			->where('news_translations.locale_id', '=', $locale_id)
-			->where('news.is_online', '=', 1, 'AND')
-			->where('news.is_deleted', '=', 0, 'AND')
-			->where('news.parent_id', '=', null, 'AND')
-//			->where('news_translations.slug', '=', $slug, 'AND')
-//			->first();
-			->orderBy('order')
-			->get();
-//dd($article);
-
-/*
-			return static::whereIsCurrent(1)
-							->whereIsOnline(1)
-							->whereIsDeleted(0)
-							->whereParentId(NULL)
-							->where('slug', '<>', 'home-article')
-							->where('slug', '<>', 'search')
-							->where('slug', '<>', 'terms-conditions')
-							->orderBy('order')
-							->get();
+		$user = DB::table('profiles')
+			->where('user_id', '=', $id)
+			->first();
+		return $user;
+	}
 */
-		// });
-
-		// return $roots;
-	}
-
-
-	public static function getStaticRoots($locale_id)
-	{
-		// $roots = Cache::rememberForever('roots', function()
-		// {
-		$article = DB::table('news')
-			->join('news_translations', 'news.id', '=', 'news_translations.news_id')
-			->where('news_translations.locale_id', '=', $locale_id)
-			->where('news.is_online', '=', 1, 'AND')
-			->where('news.is_deleted', '=', 0, 'AND')
-			->where('news.parent_id', '=', null, 'AND')
-//			->where('news_translations.slug', '=', $slug, 'AND')
-//			->first();
-			->orderBy('order')
-			->get();
-//dd($article);
-		return $article;
-	}
 
 
 }
