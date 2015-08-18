@@ -34,8 +34,8 @@ class WidgetServiceProvider extends ServiceProvider {
 	{
 
 // Individually
-		Widget::register('MenuAdmin', 'App\Widgets\NewsBanner');
-		Widget::register('MenuFooter', 'App\Widgets\TopNews');
+// 		Widget::register('MenuAdmin', 'App\Widgets\NewsBanner');
+// 		Widget::register('MenuFooter', 'App\Widgets\TopNews');
 
 	}
 

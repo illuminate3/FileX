@@ -91,8 +91,8 @@ class RecordsServiceProvider extends ServiceProvider
 		$app = $this->app;
 
 		$app->register('App\Modules\Records\Providers\RouteServiceProvider');
-// 		$app->register('App\Modules\Records\Providers\NewsMacroServiceProvider');
-		$app->register('App\Modules\Menus\Providers\WidgetServiceProvider');
+		$app->register('Codesleeve\LaravelStapler\Providers\L5ServiceProvider');
+//		$app->register('App\Modules\Records\Providers\WidgetServiceProvider');
 		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
 // 		$app->register('Baum\Providers\BaumServiceProvider');
 // 		$app->register('Barryvdh\Elfinder\ElfinderServiceProvider');

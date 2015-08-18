@@ -3,7 +3,8 @@
 	"description": "Document, File, Image Manager for Rakko",
 	"keywords": ["documents", "files", "images", "manager", "Rakko"],
 	"require": {
-		"laravel/framework": "5.1.*"
+		"laravel/framework": "5.1.*",
+		"codesleeve/laravel-stapler": "dev-master"
 	},
 	"config": {
 		"preferred-install": "dist"

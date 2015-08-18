@@ -28,15 +28,20 @@ class CreateDocumentsTable extends Migration
 			$table->increments('id');
 
 			$table->integer('user_id')->index();
-//			$table->string('owner', 30)->nullable();
-//			$table->string('name', 225)->nullable();
-			$table->string('fileName', 225)->nullable();
-			$table->string('path',225)->nullable();
-//			$table->string('group', 30)->nullable();
-			$table->smallInteger('order')->default(0);
-			$table->smallInteger('visibility')->default(1);
-			$table->string('mime', 225)->nullable();
-			$table->string('extension', 3)->nullable();
+
+			$table->string("document_file_name")->nullable();
+			$table->integer("document_file_size")->nullable();
+			$table->string("document_content_type")->nullable();
+			$table->timestamp("document_updated_at")->nullable();
+
+
+// 			$table->string('fileName', 225)->nullable();
+// 			$table->string('path',225)->nullable();
+// 			$table->string('group', 30)->nullable();
+// 			$table->smallInteger('order')->default(0);
+// 			$table->smallInteger('visibility')->default(1);
+// 			$table->string('mime', 225)->nullable();
+// 			$table->string('extension', 3)->nullable();
 
 //			$table->rememberToken();
 

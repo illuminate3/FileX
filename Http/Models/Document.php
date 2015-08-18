@@ -4,10 +4,13 @@ namespace App\Modules\Records\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Codesleeve\Stapler\ORM\StaplerableInterface;
+use Codesleeve\Stapler\ORM\EloquentTrait;
 
-use Laracasts\Presenter\PresentableTrait;
+// use Cviebrock\EloquentSluggable\SluggableInterface;
+// use Cviebrock\EloquentSluggable\SluggableTrait;
+
+//use Laracasts\Presenter\PresentableTrait;
 
 use Cache;
 use Config;
@@ -15,53 +18,58 @@ use DB;
 use Setting;
 
 
-class Document extends Model implements SluggableInterface {
+class Document extends Model implements StaplerableInterface {
 
 
-	use PresentableTrait;
-	use SluggableTrait;
+//	use PresentableTrait;
+//	use SluggableTrait;
+	use EloquentTrait;
+
 
 	protected $table = 'documents';
 
 
 // Presenter ---------------------------------------------------------------
-	protected $presenter = 'App\Modules\Records\Http\Presenters\Records';
+//	protected $presenter = 'App\Modules\Records\Http\Presenters\Records';
 
 
 // DEFINE Hidden -----------------------------------------------------------
-	protected $hidden = [
-		'created_at',
-		'updated_at'
-		];
+// 	protected $hidden = [
+// 		'created_at',
+// 		'updated_at'
+// 		];
+
 
 // DEFINE Fillable ---------------------------------------------------------
 	protected $fillable = [
- 		'image',
-		'is_featured',
-		'is_timed',
-		'is_navigation',
-		'order',
-		'publish_start',
-		'publish_end',
-		'news_status_id',
-		'slug',
-		'user_id',
-		// Translatable columns
-		'meta_description',
-		'meta_keywords',
-		'meta_title',
-		'class',
-		'content',
-		'summary',
-		'title'
+ 		'user_id',
+		'document'
 		];
 
 
+// Staple Item -------------------------------------------------------------
+	public function __construct(array $attributes = array()) {
+		$this->hasAttachedFile('document', [
+//			'url' => '/system/files/:attachment/:id_partition/:filename'
+			'url' => '/system/files/:attachment/:filename'
+		]);
+
+		parent::__construct($attributes);
+	}
+
+	public static function boot()
+	{
+		parent::boot();
+
+		static::bootStapler();
+	}
+
+
 // Sluggable Item ----------------------------------------------------------
-	protected $sluggable = [
-		'build_from' => 'title',
-		'save_to'    => 'slug',
-	];
+// 	protected $sluggable = [
+// 		'build_from' => 'title',
+// 		'save_to'    => 'slug',
+// 	];
 
 
 // Relationships -----------------------------------------------------------

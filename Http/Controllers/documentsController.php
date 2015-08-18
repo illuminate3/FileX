@@ -83,9 +83,20 @@ class DocumentsController extends RecordsController {
 		DocumentCreateRequest $request
 		)
 	{
-		$this->document_repo->store($request->all());
+//		$this->document_repo->store($request->all());
+/*
+		$photo = $this->photos;
+		$photo->photo = Input::file('photo');
+		$photo->save();
+		$photo->url = $photo->photo->url();
+		return $photo;
+*/
+//dd($request);
 
-		Flash::success( trans('kotoba::hr.success.document_create') );
+		$document = Document::create($request->all());
+
+
+		Flash::success( trans('kotoba::files.success.document_create') );
 		return redirect('admin/documents');
 	}
 

@@ -101,18 +101,11 @@ class DocumentRepository extends BaseRepository {
 	 *
 	 * @return Illuminate\Support\Collection
 	 */
-	public function store($input, $file, $show_path)
+	public function store($input)
 	{
 //dd($input);
 
-		$this->model = new Document;
-
-		if ($file != NULL) {
-			$input['logo'] = $show_path . $file;
-		}
-			$input['division_id'] = null;
-			$input['logo'] = null;
-
+//		$this->model = new Document;
 		$this->model->create($input);
 	}
 
