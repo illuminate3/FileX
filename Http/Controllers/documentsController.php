@@ -12,6 +12,7 @@ use App\Modules\Records\Http\Requests\DeleteRequest;
 
 
 use Config;
+use File;
 use Flash;
 use Redirect;
 use Session;
@@ -35,6 +36,7 @@ class DocumentsController extends RecordsController {
 		$this->document = $document;
 		$this->document_repo = $document_repo;
 // middleware
+		$this->middleware('auth');
 		$this->middleware('admin');
 	}
 
@@ -125,8 +127,15 @@ class DocumentsController extends RecordsController {
 	public function edit($id)
 	{
 		$document = $this->document->find($id);
+		$extension = File::extension($document->document_file_name);
 		$lang = Session::get('locale');
-//dd($lang);
+//dd($extension);
+
+		$js_lang = array(
+//			'CLOSE' => trans('kotoba::button.close'),
+			'CLOSE' => "Close",
+			'TITLE' => $document->document_file_name
+		);
 
 		$modal_title = trans('kotoba::general.command.delete');
 		$modal_body = trans('kotoba::general.ask.delete');
@@ -137,6 +146,8 @@ class DocumentsController extends RecordsController {
 		return Theme::View('modules.records.documents.edit',
 			compact(
 				'document',
+				'extension',
+				'js_lang',
 				'lang',
 				'modal_title',
 				'modal_body',
