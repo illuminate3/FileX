@@ -17,7 +17,7 @@
 $(function(){
 	$('.view-pdf').on('click',function(){
 		var pdf_link = $(this).attr('href');
-		var text = <?php echo json_encode($js_lang) ?>;
+		var text = {!! json_encode($js_lang) !!};
 		var iframe = '<div class="iframe-container"><iframe src="'+pdf_link+'"></iframe></div>'
 		$.createModal({
 		title: text.TITLE,
@@ -118,6 +118,12 @@ $(function(){
 </table>
 </div>
 </div>
+
+
+<img src="<?= $image->image->url() ?>" >
+<img src="<?= $image->image->url('landscape') ?>" >
+<img src="<?= $image->image->url('portrait') ?>" >
+<img src="<?= $image->image->url('thumb') ?>" >
 
 
 {{--

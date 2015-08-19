@@ -132,8 +132,8 @@ class DocumentsController extends RecordsController {
 //dd($extension);
 
 		$js_lang = array(
-//			'CLOSE' => trans('kotoba::button.close'),
-			'CLOSE' => "Close",
+			'CLOSE' => trans('kotoba::button.close'),
+//			'CLOSE' => "Close",
 			'TITLE' => $document->document_file_name
 		);
 

@@ -51,12 +51,12 @@ class Image extends Model implements StaplerableInterface {
 	public function __construct(array $attributes = array()) {
 		$this->hasAttachedFile('image', [
 			'styles' => [
-				'banner'			=> '1356x500',
-				'medium'			=> '150x196',
-				'thumb'				=> '100x100'
+				'landscape'			=> Config::get('records.image_styles.landscape'),
+				'portrait'			=> Config::get('records.image_styles.portrait'),
+				'thumb'				=> Config::get('records.image_styles.thumb')
 			],
-//			'url' => '/system/files/:attachment/:id_partition/:filename'
-			'url' => '/system/files/:attachment/:id/:filename'
+//			'url' => '/system/files/:attachment/:id_partition/:style/:filename'
+			'url' => '/system/files/:attachment/:id/:style/:filename'
 		]);
 
 		parent::__construct($attributes);
