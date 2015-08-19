@@ -55,21 +55,27 @@ Route::group(['prefix' => 'admin'], function() {
 // Controllers
 
 	Route::resource('documents', 'DocumentsController');
+	Route::resource('images', 'ImagesController');
 
 
     /**
      * Documents
     **/
 
-    Route::get('documents/index', 'documentsController@index');
-    Route::get('documents/add', 'documentsController@create');
-    /*Route::get('documents/add/{id}', 'documentsController@add');
+//     Route::get('documents/index', 'documentsController@index');
+//     Route::get('documents/add', 'documentsController@create');
+
+
+    /*
+    Route::get('documents/add/{id}', 'documentsController@add');
     Route::post('documents/add/{id}', function ($id) {
         $fileUpload = new bz_customUpload();
         $fileUpload->bz_fileUpload($id, Input::get('folder'), Input::get('name'));
 
         return Redirect::to('upravljanje/'.$id);
-    });*/
+    });
+    */
+/*
     Route::get('documents/edit/{id}', 'documentsController@edit');
     Route::post('documents/edit/{id}', function ($id) {
         $document = Documents::find($id);
@@ -88,7 +94,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         return Redirect::back()->with('message','Podatki so bili uspešno shranjeni.');
     });
-
+*/
 
 
 // 	Route::resource('news', 'NewsController');

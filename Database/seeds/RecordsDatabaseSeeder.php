@@ -18,7 +18,6 @@ class RecordsDatabaseSeeder extends Seeder {
 		Model::unguard();
 
 		$this->call('App\Modules\Records\Database\Seeds\ModuleSeeder');
-//		$this->call('App\Modules\Records\Database\Seeds\NewsStatusesSeeder');
 
 	}
 

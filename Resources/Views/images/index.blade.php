@@ -3,7 +3,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-{{ Lang::choice('kotoba::files.document', 2) }} :: @parent
+{{ Lang::choice('kotoba::cms.image', 2) }} :: @parent
 @stop
 
 @section('styles')
@@ -16,7 +16,7 @@
 @stop
 
 @section('inline-scripts')
-$(document).ready(function() {
+$(image).ready(function() {
 oTable =
 	$('#table').DataTable({
 	});
@@ -31,19 +31,19 @@ oTable =
 <div class="row">
 <h1>
 	<p class="pull-right">
-	<a href="/admin/documents/create" class="btn btn-primary" title="{{ trans('kotoba::button.new') }}">
+	<a href="/admin/images/create" class="btn btn-primary" title="{{ trans('kotoba::button.new') }}">
 		<i class="fa fa-plus fa-fw"></i>
 		{{ trans('kotoba::button.new') }}
 	</a>
 	</p>
 	<i class="fa fa-angle-double-right fa-lg"></i>
-		{{ Lang::choice('kotoba::files.document', 2) }}
+		{{ Lang::choice('kotoba::cms.image', 2) }}
 	<hr>
 </h1>
 </div>
 
 
-@if (count($documents))
+@if (count($images))
 
 
 <div class="row">
@@ -51,7 +51,7 @@ oTable =
 	<thead>
 		<tr>
 			<th>{{ Lang::choice('kotoba::table.user', 1) }}</th>
-			<th>{{ Lang::choice('kotoba::table.document', 1) }}</th>
+			<th>{{ Lang::choice('kotoba::table.image', 1) }}</th>
 			<th>{{ trans('kotoba::table.size') }}</th>
 			<th>{{ Lang::choice('kotoba::table.type', 1) }}</th>
 			<th>{{ trans('kotoba::table.updated') }}</th>
@@ -60,19 +60,19 @@ oTable =
 		</tr>
 	</thead>
 	<tbody>
-		@foreach ($documents as $document)
+		@foreach ($images as $image)
 			<tr>
-				<td>{{ $document->user_id }}</td>
-				<td>{{ $document->document_file_name }}</td>
-				<td>{{ $document->document_file_size }}</td>
-				<td>{{ $document->document_content_type }}</td>
-				<td>{{ $document->document_updated_at }}</td>
+				<td>{{ $image->user_id }}</td>
+				<td>{{ $image->image_file_name }}</td>
+				<td>{{ $image->image_file_size }}</td>
+				<td>{{ $image->image_content_type }}</td>
+				<td>{{ $image->image_updated_at }}</td>
 				<td>
-					<a href="/admin/documents/{{ $document->id }}/edit" class="btn btn-info" title="{{ trans('kotoba::button.view') }}">
+					<a href="/admin/images/{{ $image->id }}/edit" class="btn btn-info" title="{{ trans('kotoba::button.view') }}">
 						<i class="fa fa-search fa-fw"></i>
 						{{ trans('kotoba::button.view') }}
 					</a>
-					<a href="/admin/documents/{{ $document->id }}/edit" class="btn btn-danger" title="{{ trans('kotoba::button.delete') }}">
+					<a href="/admin/images/{{ $image->id }}/edit" class="btn btn-danger" title="{{ trans('kotoba::button.delete') }}">
 						<i class="fa fa-trash fa-fw"></i>
 						{{ trans('kotoba::button.delete') }}
 					</a>

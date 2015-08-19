@@ -1,13 +1,12 @@
 @extends($theme_back)
 
 
-{{-- Web document Title --}}
+{{-- Web image Title --}}
 @section('title')
-{{ Lang::choice('kotoba::files.document', 2) }} :: @parent
+{{ Lang::choice('kotoba::cms.image', 2) }} :: @parent
 @stop
 
 @section('styles')
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pdf_viewer.css') }}">
 @stop
 
 @section('scripts')
@@ -40,7 +39,7 @@ $(function(){
 <div class="row">
 <h1>
 	<p class="pull-right">
-	<a href="/admin/documents" class="btn btn-default" title="{{ trans('kotoba::button.back') }}">
+	<a href="/admin/images" class="btn btn-default" title="{{ trans('kotoba::button.back') }}">
 		<i class="fa fa-chevron-left fa-fw"></i>
 		{{ trans('kotoba::button.back') }}
 	</a>
@@ -53,9 +52,9 @@ $(function(){
 
 <div class="row">
 {!! Form::model(
-	$document,
+	$image,
 	[
-		'route' => ['admin.documents.update', $document->id],
+		'route' => ['admin.images.update', $image->id],
 		'method' => 'PATCH',
 		'class' => 'form',
 		'files' => 'true'
@@ -72,15 +71,15 @@ $(function(){
 				{{ Lang::choice('kotoba::table.user', 1) }}
 			</td>
 			<td>
-				{{ $document->user_id }}
+				{{ $image->user_id }}
 			</td>
 		</tr>
 		<tr>
 			<td>
-				{{ Lang::choice('kotoba::table.document', 1) }}
+				{{ Lang::choice('kotoba::table.image', 1) }}
 			</td>
 			<td>
-				{{ $document->document_file_name }}
+				{{ $image->image_file_name }}
 			</td>
 		</tr>
 		<tr>
@@ -88,7 +87,7 @@ $(function(){
 				{{ trans('kotoba::table.size') }}
 			</td>
 			<td>
-				{{ $document->document_file_size }}
+				{{ $image->image_file_size }}
 			</td>
 		</tr>
 		<tr>
@@ -96,7 +95,7 @@ $(function(){
 				{{ Lang::choice('kotoba::table.type', 1) }}
 			</td>
 			<td>
-				{{ $document->document_content_type }}
+				{{ $image->image_content_type }}
 			</td>
 		</tr>
 		<tr>
@@ -104,7 +103,7 @@ $(function(){
 				{{ trans('kotoba::table.url') }}
 			</td>
 			<td>
-				{{ $document->document->url() }}
+				{{ $image->image->url() }}
 			</td>
 		</tr>
 		<tr>
@@ -112,7 +111,7 @@ $(function(){
 				{{ trans('kotoba::table.updated') }}
 			</td>
 			<td>
-				{{ $document->document_updated_at }}
+				{{ $image->image_updated_at }}
 			</td>
 		</tr>
 	</tbody>
@@ -122,7 +121,7 @@ $(function(){
 
 
 {{--
-<a href="/admin/documents/{{ $document->id }}/edit" class="btn btn-success" title="{{ trans('kotoba::button.edit') }}">
+<a href="/admin/images/{{ $image->id }}/edit" class="btn btn-success" title="{{ trans('kotoba::button.edit') }}">
 	<i class="fa fa-pencil fa-fw"></i>
 	{{ trans('kotoba::button.edit') }}
 </a>
@@ -134,7 +133,7 @@ $(function(){
 		<div class="col-sm-8">
 
 			@if($logo != NULL)
-				{!! Form::hidden('logo', $document->logo) !!}
+				{!! Form::hidden('logo', $image->logo) !!}
 				{!! Html::image($logo, '', ['class' => 'img-thumbnail']) !!}
 			@else
 				<div class="alert alert-danger">
@@ -159,15 +158,15 @@ $(function(){
 
 <div class="form-group margin-top-xl">
 	@if ( $extension == "pdf" )
-		<a class="btn btn-primary btn-block view-pdf" href="{{ $document->document->url() }}">{{ trans('kotoba::button.view') }}</a>
+		<a class="btn btn-primary btn-block view-pdf" href="{{ $image->image->url() }}">{{ trans('kotoba::button.view') }}</a>
 	@else
-		<a class="btn btn-primary btn-block" href="{{ $document->document->url() }}">{{ trans('kotoba::button.download') }}</a>
+		<a class="btn btn-primary btn-block" href="{{ $image->image->url() }}">{{ trans('kotoba::button.download') }}</a>
 	@endif
 </div>
 
 <div class="row">
 <div class="col-sm-6">
-	<a href="/admin/documents" class="btn btn-default btn-block" title="{{ trans('kotoba::button.back') }}">
+	<a href="/admin/images" class="btn btn-default btn-block" title="{{ trans('kotoba::button.back') }}">
 		<i class="fa fa-times fa-fw"></i>
 		{{ trans('kotoba::button.back') }}
 	</a>
