@@ -63,7 +63,11 @@ oTable =
 		@foreach ($images as $image)
 			<tr>
 				<td>{{ $image->user_id }}</td>
-				<td>{{ $image->image_file_name }}</td>
+				<td>
+					<img src="<?= $image->image->url('thumb') ?>" >
+					<br>
+					{{ $image->image_file_name }}
+				</td>
 				<td>{{ $image->image_file_size }}</td>
 				<td>{{ $image->image_content_type }}</td>
 				<td>{{ $image->image_updated_at }}</td>
