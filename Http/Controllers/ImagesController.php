@@ -172,7 +172,7 @@ class ImagesController extends RecordsController {
 //dd("update");
 		$this->image_repo->update($request->all(), $id);
 
-		Flash::success( trans('kotoba::hr.success.image_update') );
+		Flash::success( trans('kotoba::files.success.image_update') );
 		return redirect('admin/images');
 	}
 
@@ -187,7 +187,7 @@ class ImagesController extends RecordsController {
 	{
 		$this->image->find($id)->delete();
 
-		Flash::success( trans('kotoba::hr.success.image_delete') );
+		Flash::success( trans('kotoba::files.success.image_delete') );
 		return Redirect::route('admin.images.index');
 	}
 

@@ -172,7 +172,7 @@ class DocumentsController extends RecordsController {
 //dd("update");
 		$this->document_repo->update($request->all(), $id);
 
-		Flash::success( trans('kotoba::hr.success.document_update') );
+		Flash::success( trans('kotoba::files.success.document_update') );
 		return redirect('admin/documents');
 	}
 
@@ -187,7 +187,7 @@ class DocumentsController extends RecordsController {
 	{
 		$this->document->find($id)->delete();
 
-		Flash::success( trans('kotoba::hr.success.document_delete') );
+		Flash::success( trans('kotoba::files.success.document_delete') );
 		return Redirect::route('admin.documents.index');
 	}
 

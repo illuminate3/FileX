@@ -52,6 +52,7 @@ class Image extends Model implements StaplerableInterface {
 		$this->hasAttachedFile('image', [
 			'styles' => [
 				'landscape'			=> Config::get('records.image_styles.landscape'),
+				'preview'			=> Config::get('records.image_styles.preview'),
 				'portrait'			=> Config::get('records.image_styles.portrait'),
 				'thumb'				=> Config::get('records.image_styles.thumb')
 			],
