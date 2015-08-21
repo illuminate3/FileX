@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Records\Http\Models;
+namespace App\Modules\FileX\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,7 +30,7 @@ class Image extends Model implements StaplerableInterface {
 
 
 // Presenter ---------------------------------------------------------------
-//	protected $presenter = 'App\Modules\Records\Http\Presenters\Records';
+//	protected $presenter = 'App\Modules\FileX\Http\Presenters\FileX';
 
 
 // DEFINE Hidden -----------------------------------------------------------
@@ -51,10 +51,10 @@ class Image extends Model implements StaplerableInterface {
 	public function __construct(array $attributes = array()) {
 		$this->hasAttachedFile('image', [
 			'styles' => [
-				'landscape'			=> Config::get('records.image_styles.landscape'),
-				'preview'			=> Config::get('records.image_styles.preview'),
-				'portrait'			=> Config::get('records.image_styles.portrait'),
-				'thumb'				=> Config::get('records.image_styles.thumb')
+				'landscape'			=> Config::get('filex.image_styles.landscape'),
+				'preview'			=> Config::get('filex.image_styles.preview'),
+				'portrait'			=> Config::get('filex.image_styles.portrait'),
+				'thumb'				=> Config::get('filex.image_styles.thumb')
 			],
 //			'url' => '/system/files/:attachment/:id_partition/:style/:filename'
 			'url' => '/system/files/:attachment/:id/:style/:filename'

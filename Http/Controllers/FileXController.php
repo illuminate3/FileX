@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Modules\Records\Http\Controllers;
+namespace App\Modules\FileX\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
 use Theme;
 
 
-class RecordsController extends Controller
+class FileXController extends Controller
 {
 
 
 	/**
 	 * Initializer.
 	 *
-	 * @return \RecordsController
+	 * @return \FileXController
 	 */
 	public function __construct()
 	{
@@ -31,7 +31,7 @@ class RecordsController extends Controller
 	 */
 	public function welcome()
 	{
-		return Theme::View('modules.records.welcome.records');
+		return Theme::View('modules.filex.welcome.filex');
 	}
 
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\Records\Database\Seeds;
+namespace App\Modules\FileX\Database\Seeds;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
 
-class RecordsDatabaseSeeder extends Seeder {
+class FileXDatabaseSeeder extends Seeder {
 
 	/**
 	 * Run the database seeds.
@@ -17,7 +17,7 @@ class RecordsDatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		$this->call('App\Modules\Records\Database\Seeds\ModuleSeeder');
+		$this->call('App\Modules\FileX\Database\Seeds\ModuleSeeder');
 
 	}
 

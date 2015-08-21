@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\Records\Http\Controllers;
+namespace App\Modules\FileX\Http\Controllers;
 
-use App\Modules\Records\Http\Models\Image;
-use App\Modules\Records\Http\Repositories\ImageRepository;
+use App\Modules\FileX\Http\Models\Image;
+use App\Modules\FileX\Http\Repositories\ImageRepository;
 
 use Illuminate\Http\Request;
-use App\Modules\Records\Http\Requests\ImageCreateRequest;
-use App\Modules\Records\Http\Requests\ImageUpdateRequest;
-use App\Modules\Records\Http\Requests\DeleteRequest;
+use App\Modules\FileX\Http\Requests\ImageCreateRequest;
+use App\Modules\FileX\Http\Requests\ImageUpdateRequest;
+use App\Modules\FileX\Http\Requests\DeleteRequest;
 
 
 use Config;
@@ -19,7 +19,7 @@ use Session;
 use Theme;
 
 
-class ImagesController extends RecordsController {
+class ImagesController extends FileXController {
 
 	/**
 	 * Image Repository
@@ -52,7 +52,7 @@ class ImagesController extends RecordsController {
 		$images = $this->image->all();
 //dd($images);
 
-		return Theme::View('modules.records.images.index',
+		return Theme::View('modules.filex.images.index',
 			compact(
 				'lang',
 				'images'
@@ -70,7 +70,7 @@ class ImagesController extends RecordsController {
 		$lang = Session::get('locale');
 //dd($lang);
 
-		return Theme::View('modules.records.images.create',
+		return Theme::View('modules.filex.images.create',
 			compact(
 				'lang'
 		));
@@ -143,7 +143,7 @@ class ImagesController extends RecordsController {
 		$modal_id = $id;
 		$model = '$image';
 
-		return Theme::View('modules.records.images.edit',
+		return Theme::View('modules.filex.images.edit',
 			compact(
 				'image',
 				'extension',

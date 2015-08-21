@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Records\Database\Seeds;
+namespace App\Modules\FileX\Database\Seeds;
 
 use Illuminate\Database\Seeder;
 Use DB;
@@ -15,9 +15,9 @@ class ModuleSeeder extends Seeder {
 // Permissions -------------------------------------------------------------
 		$permissions = array(
 			[
-				'name'				=> 'Manage Records',
-				'slug'				=> 'manage_records',
-				'description'		=> 'Give permission to user to manage the Records system'
+				'name'				=> 'Manage FileX',
+				'slug'				=> 'manage_filex',
+				'description'		=> 'Give permission to user to manage the FileX system'
 			],
 		 );
 

@@ -1,5 +1,5 @@
 {
-	"name": "rakko/records",
+	"name": "rakko/filex",
 	"description": "Document, File, Image Manager for Rakko",
 	"keywords": ["documents", "files", "images", "manager", "Rakko"],
 	"require": {

@@ -1,8 +1,8 @@
 {
-	"name": "Records",
-	"slug": "records",
+	"name": "Filex",
+	"slug": "filex",
 	"version": "1.0",
-	"description": "Records Manager",
+	"description": "Documents, Files and Images Manager",
 	"order": 1,
 	"enabled": true
 }

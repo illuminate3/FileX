@@ -1,4 +1,4 @@
-# Records (Theme Manager) : Laravel 5.1.x
+# FileX (Theme Manager) : Laravel 5.1.x
 
 
 ## Status / Version
@@ -7,7 +7,7 @@ Beta Development
 
 
 ## Description
-Records extends the ability of the Rakko platform's by providing it with a document, file, image manager.
+FileX extends the ability of the Rakko platform's by providing it with a document, file, image manager.
 
 
 ## Functionality
@@ -27,8 +27,8 @@ Manage Themes
 ### migration commands
 
 ```
-php artisan module:migrate Records
-php artisan module:seed Records
+php artisan module:migrate FileX
+php artisan module:seed FileX
 ```
 
 
@@ -36,14 +36,14 @@ php artisan module:seed Records
 
 General Publish "ALL" method
 ```
-php artisan vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider"
+php artisan vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider"
 ```
 
 Specific Publish tags
 ```
-php artisan vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="configs"
-php artisan vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="images"
-php artisan vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="views"
+php artisan vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="configs"
+php artisan vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="images"
+php artisan vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="views"
 ```
 
 

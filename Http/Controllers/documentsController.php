@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\Records\Http\Controllers;
+namespace App\Modules\FileX\Http\Controllers;
 
-use App\Modules\Records\Http\Models\Document;
-use App\Modules\Records\Http\Repositories\DocumentRepository;
+use App\Modules\FileX\Http\Models\Document;
+use App\Modules\FileX\Http\Repositories\DocumentRepository;
 
 use Illuminate\Http\Request;
-use App\Modules\Records\Http\Requests\DocumentCreateRequest;
-use App\Modules\Records\Http\Requests\DocumentUpdateRequest;
-use App\Modules\Records\Http\Requests\DeleteRequest;
+use App\Modules\FileX\Http\Requests\DocumentCreateRequest;
+use App\Modules\FileX\Http\Requests\DocumentUpdateRequest;
+use App\Modules\FileX\Http\Requests\DeleteRequest;
 
 
 use Config;
@@ -19,7 +19,7 @@ use Session;
 use Theme;
 
 
-class DocumentsController extends RecordsController {
+class DocumentsController extends FileXController {
 
 	/**
 	 * Document Repository
@@ -52,7 +52,7 @@ class DocumentsController extends RecordsController {
 		$documents = $this->document->all();
 //dd($documents);
 
-		return Theme::View('modules.records.documents.index',
+		return Theme::View('modules.filex.documents.index',
 			compact(
 				'lang',
 				'documents'
@@ -70,7 +70,7 @@ class DocumentsController extends RecordsController {
 		$lang = Session::get('locale');
 //dd($lang);
 
-		return Theme::View('modules.records.documents.create',
+		return Theme::View('modules.filex.documents.create',
 			compact(
 				'lang'
 		));
@@ -143,7 +143,7 @@ class DocumentsController extends RecordsController {
 		$modal_id = $id;
 		$model = '$document';
 
-		return Theme::View('modules.records.documents.edit',
+		return Theme::View('modules.filex.documents.edit',
 			compact(
 				'document',
 				'extension',

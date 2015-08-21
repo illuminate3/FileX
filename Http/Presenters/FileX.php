@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Modules\Records\Http\Presenters;
+namespace App\Modules\FileX\Http\Presenters;
 
 use Laracasts\Presenter\Presenter;
 
 use DB;
 
 
-class Records extends Presenter {
+class FileX extends Presenter {
 
 	/**
 	 * Present name

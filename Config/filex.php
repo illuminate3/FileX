@@ -2,17 +2,17 @@
 
 return [
 
-//vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="config"
-//vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="js"
-//vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="plugins"
-//vendor:publish --provider="App\Modules\Records\Providers\RecordsServiceProvider" --tag="views"
+//vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="config"
+//vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="js"
+//vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="plugins"
+//vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="views"
 
 /*
 |--------------------------------------------------------------------------
 | db settings
 |--------------------------------------------------------------------------
 */
-'records_db' => array(
+'filex_db' => array(
 	'prefix'					=> '',
 ),
 

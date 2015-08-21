@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\Records\Http\Repositories;
+namespace App\Modules\FileX\Http\Repositories;
 
 use App\Modules\Core\Http\Repositories\BaseRepository;
-use App\Modules\Records\Http\Models\Image;
+use App\Modules\FileX\Http\Models\Image;
 
 use Config;
 use DB;

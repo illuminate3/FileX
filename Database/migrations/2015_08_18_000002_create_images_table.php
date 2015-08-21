@@ -10,7 +10,7 @@ class CreateImagesTable extends Migration
 	public function __construct()
 	{
 		// Get the prefix
-		$this->prefix = Config::get('records.records_db.prefix', '');
+		$this->prefix = Config::get('filex.filex_db.prefix', '');
 	}
 
 

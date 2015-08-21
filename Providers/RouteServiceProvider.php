@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Records\Providers;
+namespace App\Modules\FileX\Providers;
 
 use Caffeinated\Modules\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
@@ -16,7 +16,7 @@ class RouteServiceProvider extends ServiceProvider
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'App\Modules\Records\Http\Controllers';
+	protected $namespace = 'App\Modules\FileX\Http\Controllers';
 
 	/**
 	 * Define your module's route model bindings, pattern filters, etc.
@@ -42,7 +42,7 @@ class RouteServiceProvider extends ServiceProvider
 	{
 		$router->group(['namespace' => $this->namespace], function($router)
 		{
-			require (config('modules.path').'/Records/Http/routes.php');
+			require (config('modules.path').'/FileX/Http/routes.php');
 		});
 	}
 

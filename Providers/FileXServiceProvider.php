@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Records\Providers;
+namespace App\Modules\FileX\Providers;
 
 //use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
@@ -13,11 +13,11 @@ use Theme;
 use View;
 
 
-class RecordsServiceProvider extends ServiceProvider
+class FileXServiceProvider extends ServiceProvider
 {
 
 	/**
-	 * Register the Records module service provider.
+	 * Register the FileX module service provider.
 	 *
 	 * @return void
 	 */
@@ -34,13 +34,13 @@ class RecordsServiceProvider extends ServiceProvider
 
 
 	/**
-	 * Register the Records module resource namespaces.
+	 * Register the FileX module resource namespaces.
 	 *
 	 * @return void
 	 */
 	protected function registerNamespaces()
 	{
-		View::addNamespace('records', __DIR__.'/../Resources/Views/');
+		View::addNamespace('filex', __DIR__.'/../Resources/Views/');
 	}
 
 
@@ -52,14 +52,14 @@ class RecordsServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/../Config/Records.php' => config_path('Records.php'),
+			__DIR__.'/../Config/FileX.php' => config_path('FileX.php'),
 			__DIR__ . '/../Resources/Assets/Images' => base_path('public/assets/images/'),
-			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/Records/',
+			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/FileX/',
 			__DIR__ . '/../Resources/Assets/Views/Widgets' => public_path('themes/') . Theme::getActive() . '/views/widgets/',
 		]);
 
 		$this->publishes([
-			__DIR__.'/../Config/Records.php' => config_path('Records.php'),
+			__DIR__.'/../Config/FileX.php' => config_path('FileX.php'),
 		], 'configs');
 
 		$this->publishes([
@@ -67,7 +67,7 @@ class RecordsServiceProvider extends ServiceProvider
 		], 'images');
 
 		$this->publishes([
-			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/Records/',
+			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/FileX/',
 			__DIR__ . '/../Resources/Assets/Views/Widgets' => public_path('themes/') . Theme::getActive() . '/views/widgets/',
 		], 'views');
 
@@ -90,9 +90,9 @@ class RecordsServiceProvider extends ServiceProvider
 	{
 		$app = $this->app;
 
-		$app->register('App\Modules\Records\Providers\RouteServiceProvider');
+		$app->register('App\Modules\FileX\Providers\RouteServiceProvider');
 		$app->register('Codesleeve\LaravelStapler\Providers\L5ServiceProvider');
-//		$app->register('App\Modules\Records\Providers\WidgetServiceProvider');
+//		$app->register('App\Modules\FileX\Providers\WidgetServiceProvider');
 		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
 // 		$app->register('Baum\Providers\BaumServiceProvider');
 // 		$app->register('Barryvdh\Elfinder\ElfinderServiceProvider');
