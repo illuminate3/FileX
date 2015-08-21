@@ -50,7 +50,7 @@ oTable =
 			<th>{{ Lang::choice('kotoba::table.user', 1) }}</th>
 			<th>{{ Lang::choice('kotoba::table.document', 1) }}</th>
 			<th>{{ trans('kotoba::table.size') }}</th>
-			<th>{{ trans('kotoba::table.type') }}</th>
+			<th>{{ Lang::choice('kotoba::table.type', 1) }}</th>
 			<th>{{ trans('kotoba::table.updated') }}</th>
 
 			<th>{{ Lang::choice('kotoba::table.action', 2) }}</th>
