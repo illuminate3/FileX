@@ -54,6 +54,7 @@ class Image extends Model implements StaplerableInterface {
 				'landscape'			=> Config::get('filex.image_styles.landscape'),
 				'preview'			=> Config::get('filex.image_styles.preview'),
 				'portrait'			=> Config::get('filex.image_styles.portrait'),
+				'news'				=> Config::get('filex.image_styles.news'),
 				'thumb'				=> Config::get('filex.image_styles.thumb')
 			],
 //			'url' => '/system/files/:attachment/:id_partition/:style/:filename'

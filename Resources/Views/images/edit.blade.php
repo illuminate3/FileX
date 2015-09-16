@@ -121,10 +121,15 @@ $(function(){
 
 
 <img src="<?= $image->image->url() ?>" >
+<br>
 <img src="<?= $image->image->url('landscape') ?>" >
+<br>
 <img src="<?= $image->image->url('portrait') ?>" >
+<br>
+<img src="<?= $image->image->url('news') ?>" >
+<br>
 <img src="<?= $image->image->url('thumb') ?>" >
-
+<br>
 
 {{--
 <a href="/admin/images/{{ $image->id }}/edit" class="btn btn-success" title="{{ trans('kotoba::button.edit') }}">
