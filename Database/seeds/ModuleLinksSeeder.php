@@ -7,8 +7,12 @@ Use DB;
 use Schema;
 
 
-class ModuleSeeder extends Seeder
+class ModuleLinksSeeder extends Seeder
 {
+
+
+	public function run()
+	{
 
 		$cms_id = DB::table('menus')
 			->where('name', '=', 'cms')
@@ -17,9 +21,6 @@ class ModuleSeeder extends Seeder
 		if ($cms_id == null) {
 			$cms_id = 1;
 		}
-	public function run()
-	{
-
 
 // Links -------------------------------------------------------------------
 // Documents
