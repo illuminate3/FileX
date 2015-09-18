@@ -6,7 +6,9 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
 
-class FileXDatabaseSeeder extends Seeder {
+class FileXDatabaseSeeder extends Seeder
+{
+
 
 	/**
 	 * Run the database seeds.
@@ -17,8 +19,10 @@ class FileXDatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		$this->call('App\Modules\FileX\Database\Seeds\ModuleSeeder');
+		$this->call('App\Modules\FileX\Database\Seeds\ModulePermissionsSeeder');
+		$this->call('App\Modules\FileX\Database\Seeds\ModuleLinksSeeder');
 
 	}
+
 
 }
