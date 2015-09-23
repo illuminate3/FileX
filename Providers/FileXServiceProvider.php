@@ -13,7 +13,7 @@ use Theme;
 use View;
 
 
-class FileXServiceProvider extends ServiceProvider
+class FilexServiceProvider extends ServiceProvider
 {
 
 	/**
