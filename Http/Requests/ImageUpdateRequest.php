@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\FileX\Http\Requests;
+namespace App\Modules\Filex\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Config;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\FileX\Database\Seeds;
+namespace App\Modules\Filex\Database\Seeds;
 
 use Illuminate\Database\Seeder;
 Use DB;

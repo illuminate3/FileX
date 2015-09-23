@@ -13,7 +13,7 @@
 
 Route::group(['prefix' => 'filex'], function() {
 	Route::get('welcome', [
-		'uses'=>'FileXController@welcome'
+		'uses'=>'FilexController@welcome'
 	]);
 });
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'filex'], function() {
 // Route::resource('news', 'ArticlesController', array('except' => array('show')));
 //
 // Route::get('{slug}', array('as' => 'news', 'uses' => 'ArticleController@show'))
-// 	->where('slug', App\Modules\FileX\Http\Models\Article::$slugPattern);
+// 	->where('slug', App\Modules\Filex\Http\Models\Article::$slugPattern);
 
 // Controllers
 
@@ -157,7 +157,7 @@ Route::group(array('prefix' => 'news'), function () {
 // The slug route should be registered last since it will capture any slug-like
 // route
 Route::get('{slug}', array('as' => 'news', 'uses' => 'ArticleController@show'))
-	->where('slug', App\Modules\FileX\Http\Models\Article::$slugPattern);
+	->where('slug', App\Modules\Filex\Http\Models\Article::$slugPattern);
 */
 
 /*

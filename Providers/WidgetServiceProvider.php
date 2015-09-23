@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\FileX\Providers;
+namespace App\Modules\Filex\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

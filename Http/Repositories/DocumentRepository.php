@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\FileX\Http\Repositories;
+namespace App\Modules\Filex\Http\Repositories;
 
 use App\Modules\Core\Http\Repositories\BaseRepository;
-use App\Modules\FileX\Http\Models\Document;
+use App\Modules\Filex\Http\Models\Document;
 
 use Config;
 use DB;

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\FileX\Database\Seeds;
+namespace App\Modules\Filex\Database\Seeds;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
 
-class FileXDatabaseSeeder extends Seeder
+class FilexDatabaseSeeder extends Seeder
 {
 
 
@@ -19,8 +19,8 @@ class FileXDatabaseSeeder extends Seeder
 	{
 		Model::unguard();
 
-		$this->call('App\Modules\FileX\Database\Seeds\ModulePermissionsSeeder');
-		$this->call('App\Modules\FileX\Database\Seeds\ModuleLinksSeeder');
+		$this->call('App\Modules\Filex\Database\Seeds\ModulePermissionsSeeder');
+		$this->call('App\Modules\Filex\Database\Seeds\ModuleLinksSeeder');
 
 	}
 

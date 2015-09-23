@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Modules\FileX\Http\Controllers;
+namespace App\Modules\Filex\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
 use Theme;
 
 
-class FileXController extends Controller
+class FilexController extends Controller
 {
 
 
 	/**
 	 * Initializer.
 	 *
-	 * @return \FileXController
+	 * @return \FilexController
 	 */
 	public function __construct()
 	{

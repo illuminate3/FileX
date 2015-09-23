@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\FileX\Http\Models;
+namespace App\Modules\Filex\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,7 +30,7 @@ class Document extends Model implements StaplerableInterface {
 
 
 // Presenter ---------------------------------------------------------------
-//	protected $presenter = 'App\Modules\FileX\Http\Presenters\FileX';
+//	protected $presenter = 'App\Modules\Filex\Http\Presenters\Filex';
 
 
 // DEFINE Hidden -----------------------------------------------------------

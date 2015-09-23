@@ -2,10 +2,10 @@
 
 return [
 
-//vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="config"
-//vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="js"
-//vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="plugins"
-//vendor:publish --provider="App\Modules\FileX\Providers\FileXServiceProvider" --tag="views"
+//vendor:publish --provider="App\Modules\Filex\Providers\FilexServiceProvider" --tag="config"
+//vendor:publish --provider="App\Modules\Filex\Providers\FilexServiceProvider" --tag="js"
+//vendor:publish --provider="App\Modules\Filex\Providers\FilexServiceProvider" --tag="plugins"
+//vendor:publish --provider="App\Modules\Filex\Providers\FilexServiceProvider" --tag="views"
 
 /*
 |--------------------------------------------------------------------------

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\FileX\Http\Controllers;
+namespace App\Modules\Filex\Http\Controllers;
 
-use App\Modules\FileX\Http\Models\Document;
-use App\Modules\FileX\Http\Repositories\DocumentRepository;
+use App\Modules\Filex\Http\Models\Document;
+use App\Modules\Filex\Http\Repositories\DocumentRepository;
 
 use Illuminate\Http\Request;
-use App\Modules\FileX\Http\Requests\DocumentCreateRequest;
-use App\Modules\FileX\Http\Requests\DocumentUpdateRequest;
-use App\Modules\FileX\Http\Requests\DeleteRequest;
+use App\Modules\Filex\Http\Requests\DocumentCreateRequest;
+use App\Modules\Filex\Http\Requests\DocumentUpdateRequest;
+use App\Modules\Filex\Http\Requests\DeleteRequest;
 
 
 use Config;
@@ -19,7 +19,7 @@ use Session;
 use Theme;
 
 
-class DocumentsController extends FileXController {
+class DocumentsController extends FilexController {
 
 	/**
 	 * Document Repository

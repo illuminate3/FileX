@@ -24,11 +24,11 @@
 			</a>
 			<div class="title">
 				<a href="/">
-					FileX
+					Filex
 				</a>
 			</div>
 			<div class="quote">
-				FileX is a document, file and image management system module for Rakko
+				Filex is a document, file and image management system module for Rakko
 			</div>
 		</div>
 	</div>

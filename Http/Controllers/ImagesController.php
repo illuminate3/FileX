@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\FileX\Http\Controllers;
+namespace App\Modules\Filex\Http\Controllers;
 
-use App\Modules\FileX\Http\Models\Image;
-use App\Modules\FileX\Http\Repositories\ImageRepository;
+use App\Modules\Filex\Http\Models\Image;
+use App\Modules\Filex\Http\Repositories\ImageRepository;
 
 use Illuminate\Http\Request;
-use App\Modules\FileX\Http\Requests\ImageCreateRequest;
-use App\Modules\FileX\Http\Requests\ImageUpdateRequest;
-use App\Modules\FileX\Http\Requests\DeleteRequest;
+use App\Modules\Filex\Http\Requests\ImageCreateRequest;
+use App\Modules\Filex\Http\Requests\ImageUpdateRequest;
+use App\Modules\Filex\Http\Requests\DeleteRequest;
 
 
 use Config;
@@ -19,7 +19,7 @@ use Session;
 use Theme;
 
 
-class ImagesController extends FileXController {
+class ImagesController extends FilexController {
 
 	/**
 	 * Image Repository

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\FileX\Providers;
+namespace App\Modules\Filex\Providers;
 
 //use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
@@ -17,7 +17,7 @@ class FilexServiceProvider extends ServiceProvider
 {
 
 	/**
-	 * Register the FileX module service provider.
+	 * Register the Filex module service provider.
 	 *
 	 * @return void
 	 */
@@ -34,7 +34,7 @@ class FilexServiceProvider extends ServiceProvider
 
 
 	/**
-	 * Register the FileX module resource namespaces.
+	 * Register the Filex module resource namespaces.
 	 *
 	 * @return void
 	 */
@@ -54,7 +54,7 @@ class FilexServiceProvider extends ServiceProvider
 		$this->publishes([
 			__DIR__.'/../Config/filex.php' => config_path('filex.php'),
 			__DIR__ . '/../Resources/Assets/Images' => base_path('public/assets/images/'),
-			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/FileX/',
+			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/Filex/',
 			__DIR__ . '/../Resources/Assets/Views/Widgets' => public_path('themes/') . Theme::getActive() . '/views/widgets/',
 		]);
 
@@ -67,7 +67,7 @@ class FilexServiceProvider extends ServiceProvider
 		], 'images');
 
 		$this->publishes([
-			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/FileX/',
+			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/Filex/',
 			__DIR__ . '/../Resources/Assets/Views/Widgets' => public_path('themes/') . Theme::getActive() . '/views/widgets/',
 		], 'views');
 
@@ -90,9 +90,9 @@ class FilexServiceProvider extends ServiceProvider
 	{
 		$app = $this->app;
 
-		$app->register('App\Modules\FileX\Providers\RouteServiceProvider');
+		$app->register('App\Modules\Filex\Providers\RouteServiceProvider');
 		$app->register('Codesleeve\LaravelStapler\Providers\L5ServiceProvider');
-//		$app->register('App\Modules\FileX\Providers\WidgetServiceProvider');
+//		$app->register('App\Modules\Filex\Providers\WidgetServiceProvider');
 		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
 
 	}
