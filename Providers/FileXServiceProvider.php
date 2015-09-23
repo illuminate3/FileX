@@ -52,14 +52,14 @@ class FileXServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/../Config/FileX.php' => config_path('FileX.php'),
+			__DIR__.'/../Config/filex.php' => config_path('filex.php'),
 			__DIR__ . '/../Resources/Assets/Images' => base_path('public/assets/images/'),
 			__DIR__ . '/../Resources/Views/' => public_path('themes/') . Theme::getActive() . '/views/modules/FileX/',
 			__DIR__ . '/../Resources/Assets/Views/Widgets' => public_path('themes/') . Theme::getActive() . '/views/widgets/',
 		]);
 
 		$this->publishes([
-			__DIR__.'/../Config/FileX.php' => config_path('FileX.php'),
+			__DIR__.'/../Config/filex.php' => config_path('filex.php'),
 		], 'configs');
 
 		$this->publishes([
@@ -94,8 +94,7 @@ class FileXServiceProvider extends ServiceProvider
 		$app->register('Codesleeve\LaravelStapler\Providers\L5ServiceProvider');
 //		$app->register('App\Modules\FileX\Providers\WidgetServiceProvider');
 		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
-// 		$app->register('Baum\Providers\BaumServiceProvider');
-// 		$app->register('Barryvdh\Elfinder\ElfinderServiceProvider');
+
 	}
 
 }
