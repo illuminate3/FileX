@@ -129,11 +129,11 @@ class DocumentsController extends FilexController {
 		$document = $this->document->find($id);
 		$extension = File::extension($document->document_file_name);
 		$lang = Session::get('locale');
-//dd($extension);
+//dd($document->document_file_name);
 
 		$js_lang = array(
-			'CLOSE' => trans('kotoba::button.close'),
-//			'CLOSE' => "Close",
+//			'CLOSE' => trans('kotoba::button.close'),
+			'CLOSE' => "Close",
 			'TITLE' => $document->document_file_name
 		);
 

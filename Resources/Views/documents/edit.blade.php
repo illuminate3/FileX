@@ -11,7 +11,7 @@
 @stop
 
 @section('scripts')
-	<script src="{{ asset('assets/js/pdf_viewer.js') }}"></script>
+	<script src="{{ asset('assets/js/pdf_viewer.min.js') }}"></script>
 @stop
 
 @section('inline-scripts')
@@ -175,7 +175,7 @@ $(function(){
 
 <div class="col-sm-6">
 <!-- Button trigger modal -->
-	<a data-toggle="modal" data-target="#myModal" class="btn btn-default btn-block" title="{{ trans('kotoba::button.delete') }}">
+	<a data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-block" title="{{ trans('kotoba::button.delete') }}">
 		<i class="fa fa-trash-o fa-fw"></i>
 		{{ trans('kotoba::general.command.delete') }}
 	</a>
