@@ -94,7 +94,7 @@ class DocumentsController extends FilexController {
 		$photo->url = $photo->photo->url();
 		return $photo;
 */
-//dd($request->document);
+//dd($request);
 
 		$document = Document::create($request->all());
 
