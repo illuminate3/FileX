@@ -36,6 +36,17 @@
 
 
 <div class="row">
+<div class="alert alert-danger alert-dismissible fade in" role="alert">
+	<p>
+		{{ trans('kotoba::files.default_file_zize') }}:&nbsp;{{ $default_file_size }}
+
+
+	</p>
+</div>
+</div>
+
+
+<div class="row">
 {!! Form::open([
 	'url' => 'admin/images',
 	'method' => 'POST',

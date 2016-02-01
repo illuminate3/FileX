@@ -169,27 +169,37 @@ $(function(){
 
 <div class="form-group margin-top-xl">
 	@if ( $extension == "pdf" )
-		<a class="btn btn-primary btn-block view-pdf" href="{{ $image->image->url() }}">{{ trans('kotoba::button.view') }}</a>
+		<a class="btn btn-success btn-block view-pdf" href="{{ $image->image->url() }}">
+			<i class="fa fa-search-plus fa-fw"></i>
+			{{ trans('kotoba::button.view') }}
+		</a>
 	@else
-		<a class="btn btn-primary btn-block" href="{{ $image->image->url() }}">{{ trans('kotoba::button.download') }}</a>
+		<a class="btn btn-success btn-block" href="{{ $image->image->url() }}">
+			<i class="fa fa-download fa-fw"></i>
+			{{ trans('kotoba::button.download') }}
+		</a>
 	@endif
 </div>
 
 <div class="row">
-<div class="col-sm-6">
-	<a href="/admin/images" class="btn btn-default btn-block" title="{{ trans('kotoba::button.back') }}">
-		<i class="fa fa-times fa-fw"></i>
-		{{ trans('kotoba::button.back') }}
-	</a>
-</div>
+@if ( Auth::user()->is('super_admin') )
 
-<div class="col-sm-6">
-<!-- Button trigger modal -->
-	<a data-toggle="modal" data-target="#myModal" class="btn btn-default btn-block" title="{{ trans('kotoba::button.delete') }}">
-		<i class="fa fa-trash-o fa-fw"></i>
-		{{ trans('kotoba::general.command.delete') }}
-	</a>
-</div>
+	<div class="col-sm-6">
+		<a href="/admin/images" class="btn btn-default btn-block" title="{{ trans('kotoba::button.back') }}">
+			<i class="fa fa-times fa-fw"></i>
+			{{ trans('kotoba::button.back') }}
+		</a>
+	</div>
+
+	<div class="col-sm-6">
+	<!-- Button trigger modal -->
+		<a data-toggle="modal" data-target="#myModal" class="btn btn-default btn-block" title="{{ trans('kotoba::button.delete') }}">
+			<i class="fa fa-trash-o fa-fw"></i>
+			{{ trans('kotoba::general.command.delete') }}
+		</a>
+	</div>
+
+@endif
 </div>
 
 

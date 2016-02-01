@@ -76,10 +76,12 @@ oTable =
 						<i class="fa fa-search fa-fw"></i>
 						{{ trans('kotoba::button.view') }}
 					</a>
-					<a href="/admin/images/{{ $image->id }}/edit" class="btn btn-danger" title="{{ trans('kotoba::button.delete') }}">
-						<i class="fa fa-trash fa-fw"></i>
-						{{ trans('kotoba::button.delete') }}
-					</a>
+					@if ( Auth::user()->is('super_admin') )
+						<a href="/admin/images/{{ $image->id }}/edit" class="btn btn-danger" title="{{ trans('kotoba::button.delete') }}">
+							<i class="fa fa-trash fa-fw"></i>
+							{{ trans('kotoba::button.delete') }}
+						</a>
+					@endif
 				</td>
 			</tr>
 		@endforeach

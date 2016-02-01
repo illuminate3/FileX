@@ -5,7 +5,7 @@ namespace App\Modules\Filex\Http\Repositories;
 use App\Modules\Core\Http\Repositories\BaseRepository;
 use App\Modules\Filex\Http\Models\Document;
 
-use Config;
+//use Config;
 use DB;
 use Image;
 use Input;

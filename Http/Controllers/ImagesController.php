@@ -69,10 +69,12 @@ class ImagesController extends FilexController {
 	{
 		$lang = Session::get('locale');
 //dd($lang);
+		$default_file_size = Config::get('filex.image_styles.landscape');
 
 		return Theme::View('modules.filex.images.create',
 			compact(
-				'lang'
+				'lang',
+				'default_file_size'
 		));
 	}
 

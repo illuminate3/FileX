@@ -11,7 +11,7 @@ use App\Modules\Filex\Http\Requests\DocumentUpdateRequest;
 use App\Modules\Filex\Http\Requests\DeleteRequest;
 
 
-use Config;
+//use Config;
 use File;
 use Flash;
 use Redirect;
