@@ -21,6 +21,7 @@ class FilexController extends Controller
 // middleware
 		$this->middleware('auth');
 		$this->middleware('admin');
+		$this->middleware('filex');
 	}
 
 

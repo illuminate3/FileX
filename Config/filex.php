@@ -16,6 +16,8 @@ return [
 	'prefix'					=> '',
 ),
 
+'auth_fail_redirect'			=> '/admin/dashboard',
+
 
 /*
 width: A style that defines a width only (landscape). Height will be automagically selected to preserve aspect ratio. This works well for resizing images for display on mobile devices, etc.
