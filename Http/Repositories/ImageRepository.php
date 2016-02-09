@@ -142,10 +142,12 @@ class ImageRepository extends BaseRepository {
 
 	public function getImageByID($id)
 	{
+//dd($id);
 // 		$image = DB::table('images')
 // 			->where('id', '=', $id)
 // 			->get();
 		$image = Image::find($id);
+//dd($image);
 
 		return $image;
 	}
