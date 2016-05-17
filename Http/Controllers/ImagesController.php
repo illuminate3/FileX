@@ -14,6 +14,7 @@ use App\Modules\Filex\Http\Requests\DeleteRequest;
 use Config;
 use File;
 use Flash;
+use Input;
 use Redirect;
 use Session;
 use Theme;
@@ -88,6 +89,11 @@ class ImagesController extends FilexController {
 		ImageCreateRequest $request
 		)
 	{
+//dd($request->all());
+//$collection = collect([1, 2, 3]);
+//$collection = collect($request->all());
+//dd($collection);
+
 //		$this->image_repo->store($request->all());
 /*
 		$photo = $this->photos;
@@ -96,9 +102,22 @@ class ImagesController extends FilexController {
 		$photo->url = $photo->photo->url();
 		return $photo;
 */
-//dd($request->image);
+//dd($request->images);
+// $images = Input::file('images');
+//
+// foreach($images as $image)
+// {
+// //$image = collect($image);
+// // dd($image);
+// // dd($image->getClientOriginalName());
+// // dd($image->getSize());
+// // dd($image->getClientOriginalExtension());
+// //	$image = Image::create($request->all());
+// 	$image = Image::create($image);
+// }
+// dd($request->images);
 
-		$image = Image::create($request->all());
+	$image = Image::create($request->all());
 
 
 		Flash::success( trans('kotoba::files.success.image_create') );

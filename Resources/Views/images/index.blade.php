@@ -97,7 +97,4 @@ oTable =
 @endif
 
 
-</div>
-
-
 @stop

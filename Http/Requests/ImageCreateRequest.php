@@ -46,7 +46,7 @@ class ImageCreateRequest extends FormRequest {
 	{
 		return [
 // 			'name'						=> 'required',
-			'image'						=> 'required|mimes:png,jpe,jpeg,jpg,gif,bmp,ico,tiff,tif,svg,svgz'
+//			'image'						=> 'required|mimes:png,jpe,jpeg,jpg,gif,bmp,ico,tiff,tif,svg,svgz'
 		];
 	}
 

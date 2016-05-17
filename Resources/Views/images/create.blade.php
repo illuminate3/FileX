@@ -58,6 +58,7 @@
 	<div class="form-group">
 		<label for="title">{{ Lang::choice('kotoba::cms.image', 1) }}</label>
 		{!! Form::file('image') !!}
+		{{-- Form::file('images[]', ['multiple']) --}}
 	</div>
 
 
