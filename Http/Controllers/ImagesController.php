@@ -103,22 +103,19 @@ class ImagesController extends FilexController {
 		return $photo;
 */
 //dd($request->images);
-// $images = Input::file('images');
-//
-// foreach($images as $image)
-// {
-// //$image = collect($image);
-// // dd($image);
-// // dd($image->getClientOriginalName());
-// // dd($image->getSize());
-// // dd($image->getClientOriginalExtension());
-// //	$image = Image::create($request->all());
-// 	$image = Image::create($image);
-// }
-// dd($request->images);
+$images = Input::file('images');
 
-	$image = Image::create($request->all());
-
+foreach($images as $image)
+{
+//$image = collect($image);
+// dd($image);
+// dd($image->getClientOriginalName());
+// dd($image->getSize());
+// dd($image->getClientOriginalExtension());
+//	$image = Image::create($request->all());
+	$image = Image::create(['image' => $image]);
+}
+dd($request->images);
 
 		Flash::success( trans('kotoba::files.success.image_create') );
 		return redirect('admin/images');
