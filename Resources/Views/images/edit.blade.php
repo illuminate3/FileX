@@ -7,6 +7,7 @@
 @stop
 
 @section('styles')
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pdf_viewer.css') }}">
 @stop
 
 @section('scripts')

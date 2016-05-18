@@ -86,17 +86,13 @@ class DocumentsController extends FilexController {
 		DocumentCreateRequest $request
 		)
 	{
-//		$this->document_repo->store($request->all());
-/*
-		$photo = $this->photos;
-		$photo->photo = Input::file('photo');
-		$photo->save();
-		$photo->url = $photo->photo->url();
-		return $photo;
-*/
-//dd($request);
+//		$document = Document::create($request->all());
+		$documents = Input::file('documents');
 
-		$document = Document::create($request->all());
+		foreach($documents as $document)
+		{
+			$document = Document::create(['document' => $document]);
+		}
 
 
 		Flash::success( trans('kotoba::files.success.document_create') );

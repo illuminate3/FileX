@@ -46,7 +46,8 @@
 
 	<div class="form-group">
 		<label for="title">{{ Lang::choice('kotoba::files.document', 1) }}</label>
-		{!! Form::file('document') !!}
+		{{-- Form::file('document') -}}
+		{!! Form::file('documents[]', ['multiple']) !!}
 	</div>
 
 
