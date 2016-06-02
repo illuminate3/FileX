@@ -81,7 +81,7 @@ class FilexServiceProvider extends ServiceProvider
 		$app = $this->app;
 
 		$app->register('Codesleeve\LaravelStapler\Providers\L5ServiceProvider');
-		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
+//		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
 
 	}
 
