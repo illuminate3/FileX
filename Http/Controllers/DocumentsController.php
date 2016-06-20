@@ -14,6 +14,7 @@ use App\Modules\Filex\Http\Requests\DeleteRequest;
 //use Config;
 use File;
 use Flash;
+use Input;
 use Redirect;
 use Session;
 use Theme;

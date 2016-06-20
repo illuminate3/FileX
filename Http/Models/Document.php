@@ -50,8 +50,8 @@ class Document extends Model implements StaplerableInterface {
 // Staple Item -------------------------------------------------------------
 	public function __construct(array $attributes = array()) {
 		$this->hasAttachedFile('document', [
-			'url' => '/system/files/:attachment/:id_partition/:filename'
-//			'url' => '/system/files/:attachment/:id/:filename'
+//			'url' => '/system/files/:attachment/:id_partition/:filename'
+			'url' => '/system/files/:attachment/:id/:filename'
 		]);
 
 		parent::__construct($attributes);
