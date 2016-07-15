@@ -52,6 +52,7 @@ oTable =
 		<tr>
 			<th>{{ Lang::choice('kotoba::table.user', 1) }}</th>
 			<th>{{ Lang::choice('kotoba::table.image', 1) }}</th>
+			<th>{{ trans('kotoba::table.url') }}</th>
 			<th>{{ trans('kotoba::table.size') }}</th>
 			<th>{{ Lang::choice('kotoba::table.type', 1) }}</th>
 			<th>{{ trans('kotoba::table.updated') }}</th>
@@ -68,6 +69,7 @@ oTable =
 					<br>
 					{{ $image->image_file_name }}
 				</td>
+				<td>{{ $image->image->url() }}</td>
 				<td>{{ $image->image_file_size }}</td>
 				<td>{{ $image->image_content_type }}</td>
 				<td>{{ $image->image_updated_at }}</td>

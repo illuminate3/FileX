@@ -52,6 +52,7 @@ oTable =
 		<tr>
 			<th>{{ Lang::choice('kotoba::table.user', 1) }}</th>
 			<th>{{ Lang::choice('kotoba::table.document', 1) }}</th>
+			<th>{{ trans('kotoba::table.url') }}</th>
 			<th>{{ trans('kotoba::table.size') }}</th>
 			<th>{{ Lang::choice('kotoba::table.type', 1) }}</th>
 			<th>{{ trans('kotoba::table.updated') }}</th>
@@ -64,6 +65,7 @@ oTable =
 			<tr>
 				<td>{{ $document->user_id }}</td>
 				<td>{{ $document->document_file_name }}</td>
+				<td>{{ $document->document->url() }}</td>
 				<td>{{ $document->document_file_size }}</td>
 				<td>{{ $document->document_content_type }}</td>
 				<td>{{ $document->document_updated_at }}</td>
