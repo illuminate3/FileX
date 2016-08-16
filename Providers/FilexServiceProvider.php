@@ -83,6 +83,10 @@ class FilexServiceProvider extends ServiceProvider
 		$app->register('Codesleeve\LaravelStapler\Providers\L5ServiceProvider');
 //		$app->register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
 
+// Register Middleware
+		$kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
+		$kernel->pushMiddleware('App\Modules\Filex\Http\Middleware\MenuFilexMiddleware');
+
 	}
 
 
